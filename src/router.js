@@ -23,7 +23,6 @@ export default new Router({
     },
     {
       path: '/admin',
-      name: 'admin',
       component: () => import(/* webpackChunkName: "admin" */ './views/BlankRouterLink.vue'),
       children: [
         {
@@ -32,13 +31,12 @@ export default new Router({
           component: () => import(/* webpackChunkName: "admin" */ './views/admin/AdminLogin.vue'),
         },
         {
-          path: 'logged-in',
-          name: 'admin-logged-in',
+          path: '',
+          name: 'admin',
           component: () => import(/* webpackChunkName: "admin" */ './views/admin/AdminBasePage.vue'),
           children: [
             {
               path: 'events',
-              name: 'admin-events',
               component: () => import(/* webpackChunkName: "admin" */ './views/BlankRouterLink.vue'),
               children: [
                 {
