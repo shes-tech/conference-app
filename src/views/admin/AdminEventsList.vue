@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Eventos</h2>
     <table-events />
   </div>
 </template>

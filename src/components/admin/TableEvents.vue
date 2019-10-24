@@ -1,8 +1,10 @@
 <template>
-  <b-table :data="data" :columns="columns" />
+  <b-table :data="events" :columns="columns" />
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'TableEvents',
   data() {
@@ -13,22 +15,32 @@ export default {
           label: 'Título',
         },
         {
-          field: 'speaker',
+          field: 'speaker.name',
           label: 'Palestrante',
         },
         {
-          field: 'start_time',
+          field: 'start_date',
           label: 'Início',
         },
         {
-          field: 'end_time',
+          field: 'end_date',
           label: 'Fim',
         },
       ],
-      data: [
-        { title: 'Nome da Palestra' },
-      ],
     };
+  },
+  methods: {
+    ...mapActions({
+      getEvents: 'events/getEvents',
+    }),
+  },
+  computed: {
+    ...mapGetters({
+      events: 'events/events',
+    }),
+  },
+  created() {
+    this.getEvents();
   },
 };
 </script>

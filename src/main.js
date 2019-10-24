@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import App from './App.vue';
+import './plugins/firebase';
 import router from './router';
 import store from './store';
-import './scripts/firebase';
 // import './registerServiceWorker';
 import 'buefy/dist/buefy.css';
+import './assets/styles.scss';
 
 Vue.use(Buefy);
 
