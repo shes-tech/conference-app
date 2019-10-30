@@ -8,9 +8,19 @@ const defaultState = {
 
 const actions = {
   getEvents: async ({ commit }) => {
-    const events = [];
+    let events = [];
     const snapshot = await db.collection('events').get();
-    snapshot.forEach(doc => events.push(doc.data()));
+    snapshot.forEach(doc => events.push({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    events = events.map(event => ({
+      ...event,
+      start_date: event.end_date.toDate(),
+      end_date: event.end_date.toDate(),
+    }));
+
     commit('SET_LIST', events);
   },
 };
