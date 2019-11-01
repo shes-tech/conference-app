@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getEvents: 'events/getEvents',
+      fetchAllEvents: 'events/fetchAllEvents',
     }),
   },
   computed: {
@@ -40,7 +40,7 @@ export default {
     }),
   },
   created() {
-    this.getEvents();
+    this.fetchAllEvents();
   },
 };
 </script>

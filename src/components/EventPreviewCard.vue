@@ -1,11 +1,15 @@
 <template>
-  <div class="card">
-    <div class="card-content">
+  <router-link
+    tag="a"
+    class="tile is-child box p-3 notification is-unselectable"
+    :to="`/events/${event.id}`"
+  >
+    <div>
       <p class="subtitle is-7">{{ event.location }}</p>
-      <p class="title is-5">{{ event.title }}</p>
+      <p class="title is-6">{{ event.title }}</p>
       <p class="subtitle is-6">{{ event.start_date | time }} | {{ event.speaker.name }}</p>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>

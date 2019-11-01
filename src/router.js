@@ -21,6 +21,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "admin" */ './views/NextEvents.vue'),
         },
         {
+          path: 'events/:id',
+          name: 'event-details',
+          component: () => import(/* webpackChunkName: "admin" */ './views/EventDetails.vue'),
+        },
+        {
           path: 'speakers',
           name: 'speakers',
           component: () => import(/* webpackChunkName: "admin" */ './views/NextEvents.vue'),
@@ -60,6 +65,10 @@ export default new Router({
           ],
         },
       ],
+    },
+    {
+      path: '*',
+      redirect: 'events',
     },
   ],
 });

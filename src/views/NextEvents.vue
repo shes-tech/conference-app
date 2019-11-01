@@ -1,19 +1,20 @@
 <template>
   <div>
-    <h3>Próximos Eventos</h3>
+    <p class="title is-4">Próximos Eventos</p>
 
-    <event-preview-card
-      v-for="(event, index) in events"
-      :key="index"
-      :event="event"
-    />
+    <div class="tile is-parent is-vertical">
+      <event-preview-card
+        v-for="(event, index) in events"
+        :key="index"
+        :event="event"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import EventPreviewCard from '../components/EventPreviewCard.vue';
-
 
 export default {
   name: 'NextEvents',
@@ -22,16 +23,16 @@ export default {
   },
   methods: {
     ...mapActions({
-      getEvents: 'events/getEvents',
+      fetchAllEvents: 'events/fetchAllEvents',
     }),
   },
   computed: {
     ...mapGetters({
-      events: 'events/events',
+      events: 'events/eventsAsArray',
     }),
   },
   created() {
-    this.getEvents();
+    this.fetchAllEvents();
   },
 };
 </script>
