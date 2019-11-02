@@ -11,7 +11,7 @@ const defaultState = {
 const actions = {
   fetchAllEvents: async ({ commit }) => {
     const events = {};
-    const snapshot = await db.collection('events').get();
+    const snapshot = await db.collection('events').orderBy('startTime').get();
     snapshot.forEach((doc) => {
       events[doc.id] = { id: doc.id, ...doc.data() };
     });

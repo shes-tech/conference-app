@@ -1,12 +1,13 @@
 <template>
   <div>
-    <p class="title is-4">Próximos Eventos</p>
+    <p class="title is-4 m-4 mt-5 mb-1">Próximas Atividades</p>
 
     <div class="tile is-parent is-vertical">
       <event-preview-card
         v-for="(event, index) in events"
         :key="index"
         :event="event"
+        id="event.id"
       />
     </div>
   </div>
@@ -36,7 +37,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>

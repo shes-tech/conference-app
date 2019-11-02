@@ -1,13 +1,12 @@
 import Vue from 'vue';
-import Buefy from 'buefy';
 import App from './App.vue';
 import './plugins/firebase';
 import router from './router';
 import store from './store';
 // import './registerServiceWorker';
+import './plugins/fontawesome';
+import './plugins/buefy';
 import './assets/styles.scss';
-
-Vue.use(Buefy);
 
 Vue.config.productionTip = false;
 
