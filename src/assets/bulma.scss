@@ -4,6 +4,8 @@
 // Set your colors
 $primary: #71485e;
 $primary-invert: findColorInvert($primary);
+$secondary: rgb(0, 152, 171);;
+$secondary-invert: findColorInvert($primary);
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
 
@@ -14,6 +16,7 @@ $colors: (
     "light": ($light, $light-invert),
     "dark": ($dark, $dark-invert),
     "primary": ($primary, $primary-invert),
+    "secondary": ($secondary, $secondary-invert),
     "info": ($info, $info-invert),
     "success": ($success, $success-invert),
     "warning": ($warning, $warning-invert),
@@ -22,9 +25,9 @@ $colors: (
 );
 
 // Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;
+// $link: $primary;
+// $link-invert: $primary-invert;
+// $link-focus-border: $primary;
 
 // Import Bulma and Buefy styles
 @import "~bulma";

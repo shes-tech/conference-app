@@ -1,32 +1,17 @@
 <template>
   <router-link
     tag="a"
-    class="tile is-child box p-4 notification is-unselectable is-tertiary"
+    class="tile is-child box p-4 is-unselectable is-tertiary"
     :to="`/events/${event.id}`"
   >
     <div>
-      <p class="subtitle is-7">{{ event.type }}</p>
-      <p class="title is-6">{{ event.title }}</p>
+      <p
+        v-if="event.startTime"
+        class="subtitle is-uppercase has-text-secondary has-text-weight-semibold is-6 pb-2"
+      >{{ event.startTime.toDate() | time }}</p>
+      <p class="preview-title title is-5 has-text-weight-bold">{{ event.title }}</p>
       <p class="subtitle is-6">{{ event.speaker.name }}</p>
-
-      <div class="quick-info-container subtitle is-6">
-        <p class="quick-info-section">
-          <b-icon
-            icon="clock"
-            size="is-small"
-            class="vertical-align"
-          ></b-icon>
-          {{ event.startTime.toDate() | time }}
-        </p>
-        <p class="quick-info-section">
-          <b-icon
-            icon="map-marker-alt"
-            size="is-small"
-            class="vertical-align"
-          ></b-icon>
-          {{ event.location }}
-        </p>
-      </div>
+      <p class="subtitle is-6 has-text-grey-light">{{ event.location }}</p>
     </div>
   </router-link>
 </template>
@@ -42,13 +27,17 @@ export default {
   },
   filters: {
     time(date) {
-      return format(date, 'EEE, HH:mm', { locale: pt });
+      return format(date, 'HH:mm, EEEE', { locale: pt });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.preview-title {
+  line-height: 1.4em;
+}
+
 .quick-info-container {
   display: flex;
   flex-direction: row;

@@ -6,6 +6,7 @@ const db = firebase.firestore();
 const defaultState = {
   speakers: {},
   speakersList: [],
+  speakersByEventId: {},
 };
 
 const actions = {
@@ -21,23 +22,21 @@ const actions = {
       ...document.data(),
     };
 
-    commit('APPEND_LIST', speaker);
+    commit('APPEND_LIST', { speaker, event });
   },
 };
 
 const getters = {
   speakers: state => state.speakers,
   speakersAsArray: state => state.speakersList.map(id => state.speakers[id]),
+  speakersByEventId: state => state.speakersByEventId,
 };
 
 const mutations = {
-  SET_LIST: (state, speakers) => {
-    state.speakers = speakers;
-    state.speakersList = Object.keys(speakers);
-  },
-  APPEND_LIST: (state, speaker) => {
+  APPEND_LIST: (state, { speaker, event }) => {
     state.speakersList.push(speaker.id);
     Vue.set(state.speakers, speaker.id, speaker);
+    if (event) Vue.set(state.speakersByEventId, event.id, speaker);
   },
 };
 

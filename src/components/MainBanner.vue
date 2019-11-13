@@ -6,7 +6,7 @@
           She'sTech Conference 2019
         </h1>
         <h2 class="subtitle is-6">
-          21 a 23 de novembro de 2019
+          21 a 23 de novembro
         </h2>
       </div>
     </div>

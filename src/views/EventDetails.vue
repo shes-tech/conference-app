@@ -1,22 +1,16 @@
 <template>
   <div>
-    <section class="hero has-background-black-ter">
-      <router-link tag="a" to="/events" class="m-4 has-text-light">
-        &lt; Voltar para Atividades
-      </router-link>
-    </section>
-
     <section class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container">
-          <p class="subtitle is-7">{{ event.type }}</p>
-          <h1 class="title is-4">
+          <b-tag class="mb-4">{{ event.type }}</b-tag>
+          <h1 class="title is-3">
             {{ event.title }}
           </h1>
-          <h2 v-if="event.speaker" class="subtitle is-6">
+          <h2 v-if="event.speaker" class="subtitle is-5">
             {{ event.speaker.name }}
           </h2>
-          <p class="mt-5">
+          <p v-if="event.startTime" class="mt-5">
             <b-icon
               icon="clock"
               size="is-small"
@@ -39,11 +33,15 @@
     <section class="hero">
       <div class="hero-body">
         <div class="container">
-          <p class="title is-6">Sobre o evento:</p>
+          <p class="title is-5">Detalhes</p>
           <p>{{ event.description }}</p>
         </div>
       </div>
     </section>
+
+    <speaker-preview-card
+      :speaker="speaker"
+    />
   </div>
 </template>
 
@@ -52,9 +50,13 @@ import { mapGetters, mapActions } from 'vuex';
 
 import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
 
 export default {
   name: 'NextEvents',
+  components: {
+    'speaker-preview-card': SpeakerPreviewCard,
+  },
   data: () => ({
     eventId: null,
   }),
@@ -72,10 +74,13 @@ export default {
   computed: {
     ...mapGetters({
       events: 'events/events',
-      speakers: 'speakers/speakers',
+      speakers: 'speakers/speakersByEventId',
     }),
     event() {
       return this.events[this.eventId] || {};
+    },
+    speaker() {
+      return this.speakers[this.eventId] || {};
     },
   },
   created() {
@@ -85,7 +90,7 @@ export default {
   },
   filters: {
     time(date) {
-      return format(date, 'EEEE, HH:mm', { locale: pt });
+      return format(date, 'EEEE, HH:mm (dd \'de\' MMM)', { locale: pt });
     },
   },
 };
