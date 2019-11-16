@@ -1,5 +1,6 @@
 <template>
-  <div class="card has-background-light m-4">
+  <div class="card has-background-light">
+    <b-loading :is-full-page="false" :active="isLoading" />
     <div class="card-content">
       <div class="media">
         <div class="media-left">
@@ -65,6 +66,25 @@ export default {
   name: 'SpeakerPreviewCard',
   props: {
     speaker: Object,
+  },
+  data() {
+    return {
+      isLoading: true,
+    };
+  },
+  methods: {
+    checkLoad() {
+      if (this.speaker && this.speaker.name) this.isLoading = false;
+      else this.isLoading = true;
+    },
+  },
+  watch: {
+    speaker() {
+      this.checkLoad();
+    },
+  },
+  mounted() {
+    this.checkLoad();
   },
 };
 </script>

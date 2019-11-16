@@ -1,6 +1,6 @@
 # [WIP] She'sTech Conference App
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c0c0891f-f750-4a03-b00e-9a4dd24aaf4b/deploy-status)](https://app.netlify.com/sites/relaxed-yalow-52dc36/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c0c0891f-f750-4a03-b00e-9a4dd24aaf4b/deploy-status)](https://app.netlify.com/sites/shestech/deploys)
 
 Este projeto tem como objetivo criar uma aplicação web para visualização e controle dos eventos da She'sTech Conference 2019.
 

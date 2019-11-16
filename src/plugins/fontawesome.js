@@ -5,6 +5,8 @@ import {
   faClock,
   faMapMarkerAlt,
   faGlobeAmericas,
+  faChevronDown,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -24,6 +26,8 @@ library.add(
   faLinkedinIn,
   faTwitter,
   faGlobeAmericas,
+  faChevronDown,
+  faSearch,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

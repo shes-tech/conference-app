@@ -1,5 +1,7 @@
 <template>
   <div>
+    <b-loading :is-full-page="false" :active="isLoading" />
+
     <section class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container">
@@ -30,18 +32,21 @@
       </div>
     </section>
 
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
+    <div class="container p-5">
+      <div class="columns is-desktop">
+        <div class="column is-6-desktop mb-5">
           <p class="title is-5">Detalhes</p>
           <p>{{ event.description }}</p>
         </div>
+        <div class="column is-4-desktop is-offset-1-desktop">
+          <speaker-preview-card
+            v-if="!isLoading"
+            :speaker="speaker"
+          />
+        </div>
       </div>
-    </section>
+    </div>
 
-    <speaker-preview-card
-      :speaker="speaker"
-    />
   </div>
 </template>
 
@@ -50,6 +55,7 @@ import { mapGetters, mapActions } from 'vuex';
 
 import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+
 import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
 
 export default {
@@ -59,6 +65,7 @@ export default {
   },
   data: () => ({
     eventId: null,
+    isLoading: true,
   }),
   methods: {
     ...mapActions({
@@ -83,6 +90,12 @@ export default {
       return this.speakers[this.eventId] || {};
     },
   },
+  watch: {
+    event() {
+      if (this.event) this.isLoading = false;
+      else this.isLoading = true;
+    },
+  },
   created() {
     window.scrollTo(0, 0);
     this.eventId = this.$route.params.id;
@@ -97,5 +110,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/variables.scss";
 
+.hero-placeholder {
+  background-color: $primary;
+}
 </style>

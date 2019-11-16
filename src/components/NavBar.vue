@@ -1,7 +1,7 @@
 <template>
   <b-navbar class="is-dark" fixed-top>
     <template slot="brand">
-      <b-navbar-item class="nav-brand" tag="router-link" :to="{ path: '/' }">
+      <b-navbar-item tag="router-link" :to="{ path: '/' }">
         <img
           src="https://static1.squarespace.com/static/583ca58137c5810ef26a2e95/t/5d43921770e0f000010369e9/1570679114281/?format=1500w"
           alt="She's Tech Conference 2019 logo"
@@ -13,7 +13,7 @@
         tag="router-link"
         to="/events"
         :active="$route.path === '/events'"
-      >Eventos</b-navbar-item>
+      >Cronograma</b-navbar-item>
       <b-navbar-item
         tag="router-link"
         to="/speakers"
@@ -28,9 +28,3 @@ export default {
   name: 'NavBar',
 };
 </script>
-
-<style lang="scss" scoped>
-.nav-brand {
-  margin-left: auto;
-}
-</style>
