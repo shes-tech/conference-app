@@ -18,7 +18,8 @@
               size="is-small"
               class="vertical-align mr-3"
             ></b-icon>
-            {{ event.startTime.toDate() | time }}
+            {{ event.startTime.toDate() | startTime }} -
+            {{ event.endTime.toDate() | endTime }}
           </p>
           <p class="mt-4">
             <b-icon
@@ -102,8 +103,11 @@ export default {
     this.fetchAll();
   },
   filters: {
-    time(date) {
-      return format(date, 'EEEE, HH:mm (dd \'de\' MMM)', { locale: pt });
+    startTime(date) {
+      return format(date, 'HH:mm', { locale: pt });
+    },
+    endTime(date) {
+      return format(date, 'HH:mm, EEEE (dd \'de\' MMM)', { locale: pt });
     },
   },
 };

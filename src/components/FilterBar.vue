@@ -1,5 +1,5 @@
 <template>
-  <div class="pl-4 pr-4">
+  <div class="pl-3 pr-3">
     <b-tabs
       v-model="selectedTab"
       type="is-toggle"
