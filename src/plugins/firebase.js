@@ -15,3 +15,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+
+firebase.firestore().enablePersistence({ synchronizeTabs: true })
+  .catch((err) => {
+    console.warn(err);
+  });

@@ -1,11 +1,12 @@
 <template>
   <div class="pl-4 pr-4">
     <b-tabs
-      v-model="radioButton"
+      v-model="selectedTab"
       type="is-toggle"
       variant="is-primary"
       :destroy-on-hide="true"
       :animated="false"
+      @change="updateRange"
       expanded
     >
       <b-tab-item label="Agora" value="next"></b-tab-item>
@@ -30,10 +31,47 @@
 <script>
 export default {
   name: 'FilterBar',
+  model: {
+    prop: 'input',
+    event: 'change',
+  },
+  props: {
+    input: String,
+  },
   data: () => ({
-    timeRange: 'next',
-    radioButton: null,
+    selectedTab: 0,
+    tabEnum: {
+      0: 'next',
+      1: '2019-11-21',
+      2: '2019-11-22',
+      3: '2019-11-23',
+    },
   }),
+  methods: {
+    enumToString(value) {
+      return this.tabEnum[value];
+    },
+    stringToEnum(value) {
+      const foundEnum = Object.keys(this.tabEnum)
+        .find(key => this.tabEnum[key] === value);
+      if (!foundEnum) return 0;
+      return Number(foundEnum);
+    },
+    updateRange(ev) {
+      const range = this.enumToString(ev);
+      this.$emit('change', range);
+      return range;
+    },
+  },
+  watch: {
+    input(newValue) {
+      if (!newValue) return;
+      this.selectedTab = this.stringToEnum(newValue);
+    },
+  },
+  created() {
+    this.selectedTab = this.stringToEnum(this.input);
+  },
 };
 </script>
 

@@ -3,7 +3,7 @@
     <div
       class="tile is-parent is-vertical"
       v-infinite-scroll="loadMore"
-      :infinite-scroll-disabled="isFetchingMore || !canFetchMore"
+      :infinite-scroll-disabled="isFetchingMore"
     >
       <event-preview-card
         v-for="(event, index) in events"
@@ -16,13 +16,16 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapState } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import infiniteScroll from 'vue-infinite-scroll';
 import EventPreviewCard from '../components/EventPreviewCard.vue';
 
 
 export default {
-  name: 'NextEvents',
+  name: 'EventsByDay',
+  props: {
+    day: String,
+  },
   components: {
     'event-preview-card': EventPreviewCard,
   },
@@ -34,15 +37,15 @@ export default {
   }),
   methods: {
     ...mapActions({
-      fetchNextEvents: 'events/fetchNextEvents',
-      fetchMoreNextEvents: 'events/fetchMoreNextEvents',
+      fetchEventsByDay: 'events/fetchEventsByDay',
+      fetchMoreEventsByDay: 'events/fetchMoreEventsByDay',
     }),
     async loadMore() {
       if (this.isFetchingMore) return;
       this.isFetchingMore = true;
 
       try {
-        await this.fetchMoreNextEvents();
+        await this.fetchMoreEventsByDay({ day: this.day });
         this.isFetchingMore = false;
       } catch (err) {
         console.error(err);
@@ -52,14 +55,22 @@ export default {
   },
   computed: {
     ...mapGetters({
-      events: 'events/nextEvents',
+      eventsByDay: 'events/eventsByDay',
     }),
-    ...mapState('events', {
-      canFetchMore: state => state.canFetchMore.next,
-    }),
+    // ...mapState('events', {
+    //   canFetchMore: state => state.canFetchMore[this.day]
+    // }),
+    events() {
+      return this.eventsByDay[this.day] || [];
+    },
+  },
+  watch: {
+    day() {
+      this.fetchEventsByDay({ day: this.day });
+    },
   },
   created() {
-    this.fetchNextEvents();
+    this.fetchEventsByDay({ day: this.day });
   },
 };
 </script>
