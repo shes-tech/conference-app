@@ -14,11 +14,11 @@
         to="/events"
         :active="$route.path === '/events'"
       >Cronograma</b-navbar-item>
-      <b-navbar-item
+      <!-- <b-navbar-item
         tag="router-link"
         to="/speakers"
         :active="$route.path === '/speakers'"
-      >Palestrantes</b-navbar-item>
+      >Palestrantes</b-navbar-item> -->
     </template>
   </b-navbar>
 </template>

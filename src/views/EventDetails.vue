@@ -1,11 +1,10 @@
 <template>
   <div>
-    <b-loading :is-full-page="false" :active="isLoading" />
-
-    <section class="hero is-primary is-bold">
+    <!-- Event Details Banner -->
+    <section v-if="!isLoading" class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container">
-          <b-tag class="mb-4">{{ event.type }}</b-tag>
+          <b-tag v-if="event.type" class="mb-4">{{ event.type }}</b-tag>
           <h1 class="title is-3">
             {{ event.title }}
           </h1>
@@ -21,7 +20,7 @@
             {{ event.startTime.toDate() | startTime }} -
             {{ event.endTime.toDate() | endTime }}
           </p>
-          <p class="mt-4">
+          <p v-if="event.location" class="mt-4">
             <b-icon
               icon="map-marker-alt"
               size="is-small"
@@ -33,11 +32,23 @@
       </div>
     </section>
 
+    <!-- Event Details Banner (Placeholder) -->
+    <section v-else class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <placeholder-banner />
+        </div>
+      </div>
+    </section>
+
     <div class="container p-5">
       <div class="columns is-desktop">
         <div class="column is-6-desktop mb-5">
-          <p class="title is-5">Detalhes</p>
-          <p>{{ event.description }}</p>
+          <div v-if="!isLoading">
+            <p class="title is-5">Detalhes</p>
+            <p>{{ event.description }}</p>
+          </div>
+          <placeholder-description v-else />
         </div>
         <div class="column is-4-desktop is-offset-1-desktop">
           <speaker-preview-card
@@ -58,11 +69,15 @@ import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
 import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
+import PlaceholderEventDescription from '../components/placeholders/PlaceholderEventDescription.vue';
+import PlaceholderEventBanner from '../components/placeholders/PlaceholderEventBanner.vue';
 
 export default {
   name: 'NextEvents',
   components: {
     'speaker-preview-card': SpeakerPreviewCard,
+    'placeholder-description': PlaceholderEventDescription,
+    'placeholder-banner': PlaceholderEventBanner,
   },
   data: () => ({
     eventId: null,
@@ -77,6 +92,10 @@ export default {
       const eventId = this.$route.params.id;
       await this.fetchEventById(eventId);
       await this.fetchSpeakerByEventId(eventId);
+    },
+    checkLoading() {
+      if (this.event.title) this.isLoading = false;
+      else this.isLoading = true;
     },
   },
   computed: {
@@ -93,11 +112,11 @@ export default {
   },
   watch: {
     event() {
-      if (this.event) this.isLoading = false;
-      else this.isLoading = true;
+      this.checkLoading();
     },
   },
   created() {
+    this.checkLoading();
     window.scrollTo(0, 0);
     this.eventId = this.$route.params.id;
     this.fetchAll();

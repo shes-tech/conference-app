@@ -12,7 +12,7 @@
           na tecnologia do Brasil!
         </p>
 
-        <b-field class="mt-5">
+        <!-- <b-field class="mt-5">
           <b-input placeholder="Pesquisar..."
             type="search"
           />
@@ -21,7 +21,7 @@
               <b-icon icon="search" class="pl-5 pr-5" />
             </button>
           </div>
-        </b-field>
+        </b-field> -->
       </div>
     </div>
   </section>
