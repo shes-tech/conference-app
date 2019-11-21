@@ -5,8 +5,8 @@ import { parse, set } from 'date-fns';
 
 const db = firebase.firestore();
 
-const INITIAL_FETCH_LIMIT = 3;
-const UPDATE_FETCH_LIMIT = 4;
+const INITIAL_FETCH_LIMIT = 4;
+const UPDATE_FETCH_LIMIT = 6;
 
 const defaultState = {
   events: {},

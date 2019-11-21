@@ -7,6 +7,8 @@ import {
   faGlobeAmericas,
   faChevronDown,
   faSearch,
+  faGenderless,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -28,6 +30,8 @@ library.add(
   faGlobeAmericas,
   faChevronDown,
   faSearch,
+  faGenderless,
+  faUser,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

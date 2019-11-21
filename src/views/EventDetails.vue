@@ -17,8 +17,16 @@
               size="is-small"
               class="vertical-align mr-3"
             ></b-icon>
-            {{ event.startTime.toDate() | startTime }} -
-            {{ event.endTime.toDate() | endTime }}
+            {{ event.startTime.toDate() | time }}
+            <span v-if="event.endTime">- {{ event.endTime.toDate() | time }}</span>
+          </p>
+          <p v-if="event.startTime">
+            <b-icon
+              icon="genderless"
+              size="is-small"
+              class="vertical-align mr-3 transparent"
+            ></b-icon>
+            {{ event.startTime.toDate() | date }}
           </p>
           <p v-if="event.location" class="mt-4">
             <b-icon
@@ -46,13 +54,14 @@
         <div class="column is-6-desktop mb-5">
           <div v-if="!isLoading">
             <p class="title is-5">Detalhes</p>
-            <p>{{ event.description }}</p>
+            <p v-if="event.description">{{ event.description }}</p>
+            <p v-else>Nenhum detalhe foi fornecido para este evento.</p>
           </div>
           <placeholder-description v-else />
         </div>
         <div class="column is-4-desktop is-offset-1-desktop">
           <speaker-preview-card
-            v-if="!isLoading"
+            v-if="!isLoading && event.speaker.id"
             :speaker="speaker"
           />
         </div>
@@ -122,11 +131,11 @@ export default {
     this.fetchAll();
   },
   filters: {
-    startTime(date) {
+    time(date) {
       return format(date, 'HH:mm', { locale: pt });
     },
-    endTime(date) {
-      return format(date, 'HH:mm, EEEE (dd \'de\' MMM)', { locale: pt });
+    date(date) {
+      return format(date, 'EEEE (dd \'de\' MMM)', { locale: pt });
     },
   },
 };
@@ -137,5 +146,9 @@ export default {
 
 .hero-placeholder {
   background-color: $primary;
+}
+
+.transparent {
+  opacity: 0;
 }
 </style>

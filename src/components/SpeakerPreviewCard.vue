@@ -4,20 +4,27 @@
     <div class="card-content">
       <div class="media">
         <div class="media-left">
-          <figure class="image is-48x48">
+          <figure v-if="speaker.photo" class="image is-48x48">
             <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
           </figure>
+          <b-icon
+            v-else
+            icon="user"
+          />
         </div>
         <div class="media-content">
           <p class="title is-4">{{ speaker.name }}</p>
           <p
             v-if="speaker.work"
             class="subtitle is-6"
-          >{{ speaker.work.title }} | {{ speaker.work.company }}</p>
+          >
+            <span v-if="speaker.work.title">{{ speaker.work.title }} | </span>
+            {{ speaker.work.company }}
+          </p>
         </div>
       </div>
 
-      <div class="content">{{ speaker.bio }}</div>
+      <div v-if="speaker.bio" class="content" v-html="bio"></div>
 
       <div v-if="speaker.social" class="card-footer pt-4">
         <p class="mr-4">Siga:</p>
@@ -76,6 +83,15 @@ export default {
     checkLoad() {
       if (this.speaker && this.speaker.name) this.isLoading = false;
       else this.isLoading = true;
+    },
+  },
+  computed: {
+    bio() {
+      if (!this.speaker || !this.speaker.bio) return '';
+
+      let escapedText = this.speaker.bio;
+      escapedText = escapedText.replace(/(?:\r\n|\r|\n)/g, '<br>');
+      return escapedText;
     },
   },
   watch: {

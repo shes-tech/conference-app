@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tile is-child box p-4 is-unselectable is-tertiary placeholder-card"
+    class="tile is-child box pt-6 pb-6 is-unselectable is-tertiary placeholder-card"
   >
     <b-loading :is-full-page="false" :active="true" />
   </div>

@@ -10,15 +10,30 @@
     </template>
     <template slot="start">
       <b-navbar-item
+        tag="a"
+        href="https://shestech.org/"
+      >Página Inicial</b-navbar-item>
+      <b-navbar-item
         tag="router-link"
         to="/events"
         :active="$route.path === '/events'"
-      >Cronograma</b-navbar-item>
-      <!-- <b-navbar-item
-        tag="router-link"
-        to="/speakers"
-        :active="$route.path === '/speakers'"
-      >Palestrantes</b-navbar-item> -->
+      >Programação</b-navbar-item>
+      <b-navbar-item
+        tag="a"
+        href="https://shestech.org/conference-2018"
+      >2018</b-navbar-item>
+      <b-navbar-item
+        tag="a"
+        href="https://shestech.org/conference-2017"
+      >2017</b-navbar-item>
+      <b-navbar-item
+        tag="a"
+        href="https://shestech.org/quem-somos"
+      >Quem Somos</b-navbar-item>
+      <b-navbar-item
+        tag="a"
+        href="https://shestech.org/contato"
+      >Contato</b-navbar-item>
     </template>
   </b-navbar>
 </template>

@@ -8,7 +8,11 @@
       <p
         v-if="event.startTime"
         class="subtitle is-uppercase has-text-secondary has-text-weight-semibold is-6 pb-2"
-      >{{ event.startTime.toDate() | time }}</p>
+      >
+        {{ event.startTime.toDate() | time }}
+        <span v-if="event.endTime">- {{ event.endTime.toDate() | time }}</span>,
+        {{ event.startTime.toDate() | date }}
+      </p>
       <p class="preview-title title is-5 has-text-weight-bold">{{ event.title }}</p>
       <p class="subtitle is-6">{{ event.speaker.name }}</p>
       <p class="subtitle is-6 has-text-grey-light">{{ event.location }}</p>
@@ -27,7 +31,10 @@ export default {
   },
   filters: {
     time(date) {
-      return format(date, 'HH:mm, EEEE', { locale: pt });
+      return format(date, 'HH:mm', { locale: pt });
+    },
+    date(date) {
+      return format(date, 'EEEE', { locale: pt });
     },
   },
 };

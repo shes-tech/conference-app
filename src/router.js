@@ -9,7 +9,7 @@ export default new Router({
   routes: [
     {
       path: '',
-      component: () => import(/* webpackChunkName: "admin" */ './views/BasePage.vue'),
+      component: () => import(/* webpackChunkName: "base-page" */ './views/BasePage.vue'),
       children: [
         {
           path: '',
@@ -18,51 +18,12 @@ export default new Router({
         {
           path: 'events',
           name: 'events',
-          component: () => import(/* webpackChunkName: "admin" */ './views/Events.vue'),
+          component: () => import(/* webpackChunkName: "events" */ './views/Events.vue'),
         },
         {
           path: 'events/:id',
           name: 'event-details',
-          component: () => import(/* webpackChunkName: "admin" */ './views/EventDetails.vue'),
-        },
-        {
-          path: 'speakers',
-          name: 'speakers',
-          component: () => import(/* webpackChunkName: "admin" */ './views/NextEvents.vue'),
-        },
-      ],
-    },
-    {
-      path: '/admin',
-      component: () => import(/* webpackChunkName: "admin" */ './views/BlankRouterLink.vue'),
-      children: [
-        {
-          path: 'login',
-          name: 'admin-login',
-          component: () => import(/* webpackChunkName: "admin" */ './views/admin/AdminLogin.vue'),
-        },
-        {
-          path: '',
-          name: 'admin',
-          component: () => import(/* webpackChunkName: "admin" */ './views/admin/AdminBasePage.vue'),
-          children: [
-            {
-              path: 'events',
-              component: () => import(/* webpackChunkName: "admin" */ './views/BlankRouterLink.vue'),
-              children: [
-                {
-                  path: '',
-                  name: 'admin-events',
-                  component: () => import(/* webpackChunkName: "admin" */ './views/admin/AdminEventsList.vue'),
-                },
-                {
-                  path: ':id',
-                  name: 'admin-event-details',
-                  component: () => import(/* webpackChunkName: "admin" */ './views/admin/AdminEventDetails.vue'),
-                },
-              ],
-            },
-          ],
+          component: () => import(/* webpackChunkName: "event-detail" */ './views/EventDetails.vue'),
         },
       ],
     },
@@ -71,4 +32,8 @@ export default new Router({
       redirect: 'events',
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition;
+    return { x: 0, y: 0 };
+  },
 });

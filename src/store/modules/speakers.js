@@ -14,7 +14,7 @@ const actions = {
     const event = rootGetters['events/events'][eventId];
     const speakerId = event.speaker.id;
 
-    if (state.speakers[speakerId]) return;
+    if (!speakerId || state.speakers[speakerId]) return;
 
     const document = await db.collection('speakers').doc(speakerId).get();
     const speaker = {

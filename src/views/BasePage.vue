@@ -1,12 +1,7 @@
 <template>
   <div>
     <nav-bar />
-    <transition
-      name="fade"
-      mode="out-in"
-    >
-      <router-view/>
-    </transition>
+    <router-view/>
     <custom-footer />
   </div>
 </template>
