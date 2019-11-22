@@ -5,7 +5,7 @@ import { parse, set } from 'date-fns';
 
 const db = firebase.firestore();
 
-const INITIAL_FETCH_LIMIT = 12;
+const INITIAL_FETCH_LIMIT = 4;
 const UPDATE_FETCH_LIMIT = 6;
 
 const defaultState = {
@@ -21,6 +21,12 @@ const defaultState = {
     '2019-11-21': false,
     '2019-11-22': false,
     '2019-11-23': false,
+  },
+  lastFetchedSnapshot: {
+    next: null,
+    '2019-11-21': null,
+    '2019-11-22': null,
+    '2019-11-23': null,
   },
 };
 
@@ -42,30 +48,32 @@ const actions = {
       events[doc.id] = { id: doc.id, ...doc.data() };
     });
 
+    const lastSnapshot = snapshot.docs[snapshot.docs.length - 1];
     const canLoadMore = Object.keys(events).length >= INITIAL_FETCH_LIMIT;
 
     commit('APPEND_EVENTS_TO_NEXT', { events });
+    commit('SAVE_LAST_FETCHED_SNAPSHOT', { snapshot: lastSnapshot, type: 'next' });
     commit('CAN_FETCH_MORE', { status: canLoadMore, type: 'next' });
   },
   fetchMoreNextEvents: async ({ state, commit }) => {
-    const lastElementID = state.nextEvents[state.nextEvents.length - 1];
-    if (!lastElementID || !state.canFetchMore.next) return;
-
-    const lastElement = state.events[lastElementID];
+    const lastElement = state.lastFetchedSnapshot.next;
+    if (!lastElement || !state.canFetchMore.next) return;
 
     const events = {};
     const snapshot = await db.collection('events')
       .orderBy('startTime')
-      .startAfter(lastElement.startTime)
+      .startAfter(lastElement)
       .limit(UPDATE_FETCH_LIMIT)
       .get();
     snapshot.forEach((doc) => {
       events[doc.id] = { id: doc.id, ...doc.data() };
     });
 
+    const lastSnapshot = snapshot.docs[snapshot.docs.length - 1];
     const canLoadMore = Object.keys(events).length >= UPDATE_FETCH_LIMIT;
 
     commit('APPEND_EVENTS_TO_NEXT', { events });
+    commit('SAVE_LAST_FETCHED_SNAPSHOT', { snapshot: lastSnapshot, type: 'next' });
     commit('CAN_FETCH_MORE', { status: canLoadMore, type: 'next' });
   },
   fetchEventsByDay: async ({ state, commit }, { day }) => {
@@ -90,16 +98,16 @@ const actions = {
       events[doc.id] = { id: doc.id, ...doc.data() };
     });
 
+    const lastSnapshot = snapshot.docs[snapshot.docs.length - 1];
     const canLoadMore = Object.keys(events).length >= INITIAL_FETCH_LIMIT;
 
     commit('APPEND_EVENTS_TO_DAY', { events, day });
+    commit('SAVE_LAST_FETCHED_SNAPSHOT', { snapshot: lastSnapshot, type: day });
     commit('CAN_FETCH_MORE', { status: canLoadMore, type: day });
   },
   fetchMoreEventsByDay: async ({ state, commit }, { day }) => {
-    const lastElementID = state.eventsByDay[day][state.eventsByDay[day].length - 1];
-    if (!lastElementID || !state.canFetchMore[day]) return;
-
-    const lastElement = state.events[lastElementID];
+    const lastElement = state.lastFetchedSnapshot[day];
+    if (!lastElement || !state.canFetchMore[day]) return;
 
     const events = {};
 
@@ -113,7 +121,7 @@ const actions = {
       .where('startTime', '>=', start)
       .where('startTime', '<=', end)
       .orderBy('startTime')
-      .startAfter(lastElement.startTime)
+      .startAfter(lastElement)
       .limit(UPDATE_FETCH_LIMIT)
       .get();
 
@@ -121,9 +129,11 @@ const actions = {
       events[doc.id] = { id: doc.id, ...doc.data() };
     });
 
+    const lastSnapshot = snapshot.docs[snapshot.docs.length - 1];
     const canLoadMore = Object.keys(events).length >= UPDATE_FETCH_LIMIT;
 
     commit('APPEND_EVENTS_TO_DAY', { events, day });
+    commit('SAVE_LAST_FETCHED_SNAPSHOT', { snapshot: lastSnapshot, type: day });
     commit('CAN_FETCH_MORE', { status: canLoadMore, type: day });
   },
   fetchEventById: async ({ state, commit }, id) => {
@@ -166,6 +176,9 @@ const mutations = {
   },
   CAN_FETCH_MORE: (state, { status, type }) => {
     state.canFetchMore[type] = status;
+  },
+  SAVE_LAST_FETCHED_SNAPSHOT: (state, { snapshot, type }) => {
+    state.lastFetchedSnapshot[type] = snapshot;
   },
 };
 
