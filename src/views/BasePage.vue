@@ -19,7 +19,7 @@ export default {
   created() {
     setTimeout(() => {
       window.location.reload(1);
-    }, 720000);
+    }, 300000);
   },
 };
 </script>
