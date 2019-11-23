@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import firebase from 'firebase/app';
 
-import { parse, set } from 'date-fns';
+import { parse, set, isAfter } from 'date-fns';
 
 const db = firebase.firestore();
 
 const INITIAL_FETCH_LIMIT = 4;
 const UPDATE_FETCH_LIMIT = 6;
+const CONFERENCE_FINISH = '2019-11-23T21:40:00.000Z';
 
 const defaultState = {
   events: {},
@@ -28,10 +29,16 @@ const defaultState = {
     '2019-11-22': null,
     '2019-11-23': null,
   },
+  isConferenceFinished: false,
 };
 
 const actions = {
   fetchNextEvents: async ({ state, commit }) => {
+    if (isAfter(new Date(), new Date(CONFERENCE_FINISH))) {
+      commit('SET_CONFERENCE_FINISHED');
+      return;
+    }
+
     if (state.nextEvents.length > 0) return;
 
     const events = {};
@@ -179,6 +186,9 @@ const mutations = {
   },
   SAVE_LAST_FETCHED_SNAPSHOT: (state, { snapshot, type }) => {
     state.lastFetchedSnapshot[type] = snapshot;
+  },
+  SET_CONFERENCE_FINISHED: (state) => {
+    state.isConferenceFinished = true;
   },
 };
 

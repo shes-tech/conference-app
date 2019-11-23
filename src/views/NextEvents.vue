@@ -1,6 +1,7 @@
 <template>
   <div>
     <transition-group
+      v-if="!isConferenceFinished"
       tag="div"
       name="fade"
       mode="out-in"
@@ -16,10 +17,17 @@
       />
     </transition-group>
     <div
-      v-if="isFetchingMore || isListEmpty"
+      v-if="(isFetchingMore || isListEmpty) && !isConferenceFinished"
       class="tile is-parent is-vertical"
     >
       <placeholder-event-preview-card />
+    </div>
+    <div
+      v-if="isConferenceFinished"
+      class="tile is-parent is-vertical"
+    >
+      <thank-you-note
+      />
     </div>
   </div>
 </template>
@@ -29,12 +37,14 @@ import { mapGetters, mapActions, mapState } from 'vuex';
 import infiniteScroll from 'vue-infinite-scroll';
 import EventPreviewCard from '../components/EventPreviewCard.vue';
 import PlaceholderEventPreviewCard from '../components/placeholders/PlaceholderEventPreviewCard.vue';
+import ThankYouNote from '../components/ThankYouNote.vue';
 
 export default {
   name: 'NextEvents',
   components: {
     'event-preview-card': EventPreviewCard,
     'placeholder-event-preview-card': PlaceholderEventPreviewCard,
+    'thank-you-note': ThankYouNote,
   },
   directives: {
     infiniteScroll,
@@ -66,6 +76,7 @@ export default {
     }),
     ...mapState('events', {
       canFetchMore: state => state.canFetchMore.next,
+      isConferenceFinished: state => state.isConferenceFinished,
     }),
     isListEmpty() {
       return this.events.length === 0;

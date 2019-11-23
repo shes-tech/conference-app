@@ -10,6 +10,7 @@ import {
   faGenderless,
   faUser,
   faHeart,
+  faLaughBeam,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -34,6 +35,7 @@ library.add(
   faGenderless,
   faUser,
   faHeart,
+  faLaughBeam,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
