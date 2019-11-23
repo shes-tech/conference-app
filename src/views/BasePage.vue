@@ -16,6 +16,11 @@ export default {
     'nav-bar': NavBar,
     'custom-footer': Footer,
   },
+  created() {
+    setTimeout(() => {
+      window.location.reload(1);
+    }, 720000);
+  },
 };
 </script>
 
