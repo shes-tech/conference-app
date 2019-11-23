@@ -9,6 +9,7 @@ import {
   faSearch,
   faGenderless,
   faUser,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -32,6 +33,7 @@ library.add(
   faSearch,
   faGenderless,
   faUser,
+  faHeart,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
