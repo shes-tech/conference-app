@@ -15,6 +15,10 @@
           painéis de especialistas no maior evento para mulheres
           na tecnologia do Brasil!
         </p>
+        <p class="is-5 pt-5 pb-1 mb-1">
+          * Os horários estão sujeito a alterações.
+          Atualiza a página para ver os horários atualizados.
+        </p>
       </div>
     </div>
   </section>
