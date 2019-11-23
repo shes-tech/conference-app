@@ -12,6 +12,8 @@
         {{ event.startTime.toDate() | time }}
         <span v-if="event.endTime">- {{ event.endTime.toDate() | time }}</span>,
         {{ event.startTime.toDate() | date }}
+
+        <b-tag v-if="event.type !== 'Palestra'" class="ml-3">{{ event.type }}</b-tag>
       </p>
       <p class="preview-title title is-5 has-text-weight-bold">{{ event.title }}</p>
       <p class="subtitle is-6">{{ event.speaker.name }}</p>
