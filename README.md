@@ -4,16 +4,16 @@
 
 Este projeto tem como objetivo criar uma aplicação web para visualização e controle dos eventos da She'sTech Conference 2019.
 
-**DEMO**: [https://shestech.netlify.com](https://shestech.netlify.com)
-
 ![Celular mostrando duas telas da aplicação](../assets/app-sample.png?raw=true)
+
+**DEMO**: [https://shestech.netlify.com](https://shestech.netlify.com)
 
 
 ## Sobre o projeto
 
 Esta aplicação consiste de um SPA desenvolvido utilizando Vue + Firebase Firestore.
 
-Você pode conferir [**neste post**](https://italolelis.com/posts/shestech-app-pt/), forma detalhada, o processo de desenvolvimento da aplicação.
+Você pode conferir [**neste post**](https://italolelis.com/posts/shestech-app-pt/), de forma detalhada, o processo de desenvolvimento da aplicação.
 
 | O que foi utilizado                                                       | Descrição                                                       |
 |---------------------------------------------------------------------------|-----------------------------------------------------------------|
