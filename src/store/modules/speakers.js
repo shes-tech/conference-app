@@ -16,7 +16,7 @@ const actions = {
 
     if (!speakerId || state.speakers[speakerId]) return;
 
-    const document = await db.collection('speakers').doc(speakerId).get();
+    const document = await db.collection('speakers-2019').doc(speakerId).get();
     const speaker = {
       id: document.id,
       ...document.data(),

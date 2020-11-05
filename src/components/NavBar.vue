@@ -14,10 +14,14 @@
         href="https://shestech.org/"
       >Página Inicial</b-navbar-item>
       <b-navbar-item
+        tag="a"
+        href="https://shestech.netlify.app/"
+      >Programação 2020</b-navbar-item>
+      <b-navbar-item
         tag="router-link"
         to="/events"
         :active="$route.path === '/events'"
-      >Programação</b-navbar-item>
+      >2019</b-navbar-item>
       <b-navbar-item
         tag="a"
         href="https://shestech.org/conference-2018"
