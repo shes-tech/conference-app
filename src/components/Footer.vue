@@ -6,7 +6,7 @@
           class="mr-4"
           type="is-text"
           tag="a"
-          href="https://github.com/shes-tech/conference-app"
+          href="https://italolelis.com/posts/shestech-app-pt/"
           rel="noopener"
           target="_blank"
           rounded

@@ -1,30 +1,41 @@
-# [WIP] She'sTech Conference App
+# She'sTech Conference App
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c0c0891f-f750-4a03-b00e-9a4dd24aaf4b/deploy-status)](https://app.netlify.com/sites/shestech/deploys)
 
 Este projeto tem como objetivo criar uma aplicação web para visualização e controle dos eventos da She'sTech Conference 2019.
 
-## Sobre a aplicação
+![Celular mostrando duas telas da aplicação](../assets/app-sample.png?raw=true)
 
-Para o desenvolvimento da aplicação, está sendo utilizado o framework de desenvolvimento Vue em conjunto com a biblioteca de componentes Buefy.
+**DEMO**: [https://shestech.netlify.com](https://shestech.netlify.com)
 
-Para lidar com estados e separar as camadas de visualização e lógica, está sendo utilizado o Vuex.
 
-O banco de dados a ser utilizado é o Firebase Firestore.
+## Sobre o projeto
 
-Está sendo feito o deploy automático da branch "master" utilizando o netlify.
+Esta aplicação consiste de um SPA desenvolvido utilizando Vue + Firebase Firestore.
 
-## Como executar a aplicação localmente
+Você pode conferir [**neste post**](https://italolelis.com/posts/shestech-app-pt/), de forma detalhada, o processo de desenvolvimento da aplicação.
 
-Para rodar a aplicação, você irá precisar da versão mais recente do Node.js na sua máquina.
+| O que foi utilizado                                                       | Descrição                                                       |
+|---------------------------------------------------------------------------|-----------------------------------------------------------------|
+| [Vue.js](https://vuejs.org/)                                              | Framework para desenvolvimento de SPA (Single-Page Application) |
+| [Vuex](https://vuex.vuejs.org/)                                           | Gerenciador de estados recomendado para o Vue                   |
+| [Firebase Firestore](https://firebase.google.com/docs/firestore?hl=pt-br) | Banco de Dados NoSQL (Serverless)                               |
+| [Netlify](https://www.netlify.com/)                                       | Hospedagem e deploy automático                                  |
+| [Buefy](https://buefy.org/)                                               | Biblioteca de componentes do Bulma                              |
+| [date-fns](https://date-fns.org/)                                         | Biblioteca para gerenciamento de datas (no lugar do Moment.js)  |
+
+
+## Como executar
+
+Para rodar a aplicação, você irá precisar da versão mais recente do [Node.js](https://nodejs.org/) na sua máquina.
 
 ```
 # Instalar dependências
 npm install
 
-# Executar aplicação com hot-reload
+# Executar servidor local com hot-reload
 npm run serve
 
-# Compilar aplicação para produção
+# Compilar arquivos para produção
 npm run build
 ```
