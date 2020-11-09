@@ -11,6 +11,8 @@ import {
   faUser,
   faHeart,
   faLaughBeam,
+  faCalendarPlus,
+  faUserCog,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -36,6 +38,8 @@ library.add(
   faUser,
   faHeart,
   faLaughBeam,
+  faCalendarPlus,
+  faUserCog,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

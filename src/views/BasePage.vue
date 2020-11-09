@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 import NavBar from '../components/NavBar.vue';
 import Footer from '../components/Footer.vue';
 
@@ -16,7 +18,13 @@ export default {
     'nav-bar': NavBar,
     'custom-footer': Footer,
   },
+  methods: {
+    ...mapActions({
+      fetchAllTags: 'tags/fetchAllTags',
+    }),
+  },
   created() {
+    this.fetchAllTags();
     setTimeout(() => {
       window.location.reload(1);
     }, 300000);

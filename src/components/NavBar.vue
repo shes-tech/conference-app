@@ -20,6 +20,10 @@
       >Programação</b-navbar-item>
       <b-navbar-item
         tag="a"
+        href="https://shestech-2019.netlify.app"
+      >2019</b-navbar-item>
+      <b-navbar-item
+        tag="a"
         href="https://shestech.org/conference-2018"
       >2018</b-navbar-item>
       <b-navbar-item
@@ -34,6 +38,25 @@
         tag="a"
         href="https://shestech.org/contato"
       >Contato</b-navbar-item>
+      <b-navbar-item
+        tag="a"
+        href="https://shestech.org/contato"
+      >Contato</b-navbar-item>
+    </template>
+
+    <template slot="end">
+      <b-navbar-item tag="div">
+        <div class="buttons">
+          <a class="button is-primary" href="https://shestech-admin.netlify.app">
+            <b-icon
+              icon="user-cog"
+              size="is-small"
+              class="vertical-align mr-3"
+            ></b-icon>
+            <strong>Login</strong>
+          </a>
+        </div>
+      </b-navbar-item>
     </template>
   </b-navbar>
 </template>

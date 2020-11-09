@@ -8,8 +8,8 @@
           <h1 class="title is-3">
             {{ event.title }}
           </h1>
-          <h2 v-if="event.speaker" class="subtitle is-5">
-            {{ event.speaker.name }}
+          <h2 v-if="speakers.length !== 0" class="subtitle is-5">
+            {{ speakersNames }}
           </h2>
           <p v-if="event.startTime" class="mt-5">
             <b-icon
@@ -28,14 +28,19 @@
             ></b-icon>
             {{ event.startTime.toDate() | date }}
           </p>
-          <p v-if="event.location" class="mt-4">
+          <p v-if="tag.name" class="mt-4">
             <b-icon
               icon="map-marker-alt"
               size="is-small"
               class="vertical-align mr-3"
             ></b-icon>
-            {{ event.location }}
+            {{ tag.name }}
           </p>
+          <!-- <p v-if="tag.link" class="mt-5">
+            <b-button type="is-white" icon-left="calendar-plus" outlined>
+              Salvar evento no Google Agenda
+            </b-button>
+          </p> -->
         </div>
       </div>
     </section>
@@ -51,7 +56,7 @@
 
     <div class="container p-5">
       <div class="columns is-desktop">
-        <div class="column is-6-desktop mb-5">
+        <div class="column is-5-desktop mb-5">
           <div v-if="!isLoading">
             <p class="title is-5">Detalhes</p>
             <p v-if="event.description">{{ event.description }}</p>
@@ -59,10 +64,12 @@
           </div>
           <placeholder-description v-else />
         </div>
-        <div class="column is-4-desktop is-offset-1-desktop">
+        <div class="column is-5-desktop is-offset-1-desktop">
           <speaker-preview-card
-            v-if="!isLoading && event.speaker.id"
+            v-for="(speaker, index) in speakers"
+            :key="index"
             :speaker="speaker"
+            class="mb-4"
           />
         </div>
       </div>
@@ -100,23 +107,41 @@ export default {
     async fetchAll() {
       const eventId = this.$route.params.id;
       await this.fetchEventById(eventId);
-      await this.fetchSpeakerByEventId(eventId);
+      // await this.fetchSpeakerByEventId(eventId);
     },
     checkLoading() {
       if (this.event.title) this.isLoading = false;
       else this.isLoading = true;
     },
+    downloadCalendar() {},
   },
   computed: {
     ...mapGetters({
       events: 'events/events',
-      speakers: 'speakers/speakersByEventId',
+      tags: 'tags/tags',
     }),
     event() {
       return this.events[this.eventId] || {};
     },
-    speaker() {
-      return this.speakers[this.eventId] || {};
+    speakers() {
+      return this.event.speakers || [];
+    },
+    speakersNames() {
+      const speakers = this.event.speakers || [];
+      const { length } = speakers;
+      let text = '';
+
+      speakers.forEach((speaker, index) => {
+        text += speaker.name;
+        if (index < length - 2) text += ' , ';
+        if (index === length - 2) text += ' e ';
+      });
+
+      return text;
+    },
+    tag() {
+      const tagId = this.event.tag;
+      return this.tags[tagId] || {};
     },
   },
   watch: {

@@ -7,27 +7,33 @@ const db = firebase.firestore();
 
 const INITIAL_FETCH_LIMIT = 4;
 const UPDATE_FETCH_LIMIT = 6;
-const CONFERENCE_FINISH = '2019-11-23T21:40:00.000Z';
+const CONFERENCE_FINISH = '2020-11-22T03:00:00.000Z';
 
 const defaultState = {
   events: {},
   nextEvents: [],
   eventsByDay: {
-    '2019-11-21': [],
-    '2019-11-22': [],
-    '2019-11-23': [],
+    '2020-11-17': [],
+    '2020-11-18': [],
+    '2020-11-19': [],
+    '2020-11-20': [],
+    '2020-11-21': [],
   },
   canFetchMore: {
     next: false,
-    '2019-11-21': false,
-    '2019-11-22': false,
-    '2019-11-23': false,
+    '2020-11-17': false,
+    '2020-11-18': false,
+    '2020-11-19': false,
+    '2020-11-20': false,
+    '2020-11-21': false,
   },
   lastFetchedSnapshot: {
     next: null,
-    '2019-11-21': null,
-    '2019-11-22': null,
-    '2019-11-23': null,
+    '2020-11-17': null,
+    '2020-11-18': null,
+    '2020-11-19': null,
+    '2020-11-20': null,
+    '2020-11-21': null,
   },
   isConferenceFinished: false,
 };
@@ -44,7 +50,7 @@ const actions = {
     const events = {};
 
     const now = new Date();
-    const snapshot = await db.collection('events')
+    const snapshot = await db.collection('events-2020')
       .orderBy('endTime')
       .orderBy('startTime')
       .where('endTime', '>=', now)
@@ -67,7 +73,7 @@ const actions = {
     if (!lastElement || !state.canFetchMore.next) return;
 
     const events = {};
-    const snapshot = await db.collection('events')
+    const snapshot = await db.collection('events-2020')
       .orderBy('startTime')
       .startAfter(lastElement)
       .limit(UPDATE_FETCH_LIMIT)
@@ -94,7 +100,7 @@ const actions = {
     let end = parse(day, 'yyyy-MM-dd', now);
     end = set(end, { hours: 23, minutes: 59 });
 
-    const snapshot = await db.collection('events')
+    const snapshot = await db.collection('events-2020')
       .where('startTime', '>=', start)
       .where('startTime', '<=', end)
       .orderBy('startTime')
@@ -124,7 +130,7 @@ const actions = {
     let end = parse(day, 'yyyy-MM-dd', now);
     end = set(end, { hours: 23, minutes: 59 });
 
-    const snapshot = await db.collection('events')
+    const snapshot = await db.collection('events-2020')
       .where('startTime', '>=', start)
       .where('startTime', '<=', end)
       .orderBy('startTime')
@@ -146,7 +152,7 @@ const actions = {
   fetchEventById: async ({ state, commit }, id) => {
     if (state.events[id]) return;
 
-    const document = await db.collection('events').doc(id).get();
+    const document = await db.collection('events-2020').doc(id).get();
 
     const event = {
       id: document.id,

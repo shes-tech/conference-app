@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import events from './modules/events';
 import speakers from './modules/speakers';
+import tags from './modules/tags';
 
 Vue.use(Vuex);
 
@@ -10,5 +11,6 @@ export default new Vuex.Store({
   modules: {
     events,
     speakers,
+    tags,
   },
 });

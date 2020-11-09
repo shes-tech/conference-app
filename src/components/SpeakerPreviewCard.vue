@@ -1,32 +1,24 @@
 <template>
   <div class="card has-background-light">
-    <b-loading :is-full-page="false" :active="isLoading" />
     <div class="card-content">
       <div class="media">
         <div class="media-left">
-          <figure v-if="speaker.photo" class="image is-48x48">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
+          <figure v-if="speaker.picture" class="speaker-img image is-128x128">
+            <img :src="speaker.picture" alt="Foto da Palestrante" class="is-rounded" />
           </figure>
           <b-icon
             v-else
+            size="is-large"
             icon="user"
           />
         </div>
         <div class="media-content">
-          <p class="title is-4">{{ speaker.name }}</p>
-          <p
-            v-if="speaker.work"
-            class="subtitle is-6"
-          >
-            <span v-if="speaker.work.title">{{ speaker.work.title }} | </span>
-            {{ speaker.work.company }}
-          </p>
+          <p class="title is-3 mt-2">{{ speaker.name }}</p>
+          <div v-if="speaker.minibio" class="content" v-html="bio"></div>
         </div>
       </div>
 
-      <div v-if="speaker.bio" class="content" v-html="bio"></div>
-
-      <div v-if="speaker.social" class="card-footer pt-4">
+      <div v-if="hasSocial" class="card-footer pt-4">
         <p class="mr-4">Siga:</p>
         <a v-if="speaker.social.site" :href="speaker.social.site" target="_blank" rel="”noopener”">
           <b-icon icon="globe-americas" pack="fab" class="vertical-align mr-4" />
@@ -81,17 +73,31 @@ export default {
   },
   methods: {
     checkLoad() {
-      if (this.speaker && this.speaker.name) this.isLoading = false;
-      else this.isLoading = true;
+      // if (this.speaker && this.speaker.name) this.isLoading = false;
+      // else this.isLoading = true;
+      return false;
     },
   },
   computed: {
     bio() {
-      if (!this.speaker || !this.speaker.bio) return '';
+      if (!this.speaker || !this.speaker.minibio) return '';
 
-      let escapedText = this.speaker.bio;
+      let escapedText = this.speaker.minibio;
       escapedText = escapedText.replace(/(?:\r\n|\r|\n)/g, '<br>');
       return escapedText;
+    },
+    social() {
+      if (!this.speaker || !this.speaker.social) return {};
+      return this.speaker.social;
+    },
+    hasSocial() {
+      const { social } = this;
+      let hasSocial = Boolean(social.site);
+      hasSocial += Boolean(social.linkedin);
+      hasSocial += Boolean(social.instagram);
+      hasSocial += Boolean(social.twitter);
+      hasSocial += Boolean(social.facebook);
+      return hasSocial;
     },
   },
   watch: {
@@ -104,3 +110,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.speaker-img {
+  img {
+    object-fit: cover;
+    width: 128px;
+    height: 128px;
+  }
+}
+</style>

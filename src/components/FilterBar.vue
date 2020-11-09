@@ -10,9 +10,11 @@
       expanded
     >
       <b-tab-item label="Agora" value="next"></b-tab-item>
-      <b-tab-item label="Dia 1" value="2019-11-21"></b-tab-item>
-      <b-tab-item label="Dia 2" value="2019-11-22"></b-tab-item>
-      <b-tab-item label="Dia 3" value="2019-11-23"></b-tab-item>
+      <b-tab-item label="Ter" value="2020-11-17"></b-tab-item>
+      <b-tab-item label="Qua" value="2020-11-18"></b-tab-item>
+      <b-tab-item label="Qui" value="2020-11-19"></b-tab-item>
+      <b-tab-item label="Sex" value="2020-11-20"></b-tab-item>
+      <b-tab-item label="Sáb" value="2020-11-21"></b-tab-item>
     </b-tabs>
 
     <!-- <b-field class="is-hidden-touch">
@@ -42,9 +44,11 @@ export default {
     selectedTab: 0,
     tabEnum: {
       0: 'next',
-      1: '2019-11-21',
-      2: '2019-11-22',
-      3: '2019-11-23',
+      1: '2020-11-17',
+      2: '2020-11-18',
+      3: '2020-11-19',
+      4: '2020-11-20',
+      5: '2020-11-21',
     },
   }),
   methods: {
