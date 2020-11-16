@@ -16,7 +16,7 @@
       />
     </transition-group>
     <div
-      v-if="true && isFetchingMore || isListEmpty"
+      v-if="isFetchingMore || isListEmpty"
       class="tile is-parent is-vertical"
     >
       <placeholder-event-preview-card />

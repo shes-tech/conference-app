@@ -2,7 +2,7 @@
   <div
     class="tile is-child box pt-6 pb-6 is-unselectable is-tertiary placeholder-card"
   >
-    <b-loading :is-full-page="false" :active="true" />
+    <b-loading class="" :is-full-page="false" :active="true" />
   </div>
 </template>
 
@@ -14,8 +14,15 @@ export default {
 
 <style lang="scss" scoped>
 .placeholder-card {
-  background-color: #272828;
   position: relative;
   height: 160px;
+}
+</style>
+
+<style lang="scss">
+.placeholder-card {
+  .loading-background {
+    background-color: #343535;
+  }
 }
 </style>
