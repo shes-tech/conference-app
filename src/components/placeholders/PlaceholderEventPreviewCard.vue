@@ -14,6 +14,7 @@ export default {
 
 <style lang="scss" scoped>
 .placeholder-card {
+  background-color: #272828;
   position: relative;
   height: 160px;
 }

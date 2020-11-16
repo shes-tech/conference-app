@@ -58,13 +58,14 @@
       <div class="columns is-desktop">
         <div class="column is-5-desktop mb-5">
           <div v-if="!isLoading">
-            <p class="title is-5">Detalhes</p>
+            <p class="title is-5 has-text-white">Detalhes</p>
             <p v-if="event.description">{{ event.description }}</p>
             <p v-else>Nenhum detalhe foi fornecido para este evento.</p>
           </div>
           <placeholder-description v-else />
         </div>
         <div class="column is-5-desktop is-offset-1-desktop">
+          <p class="title is-5 has-text-white">Palestrantes</p>
           <speaker-preview-card
             v-for="(speaker, index) in speakers"
             :key="index"
@@ -133,7 +134,7 @@ export default {
 
       speakers.forEach((speaker, index) => {
         text += speaker.name;
-        if (index < length - 2) text += ' , ';
+        if (index < length - 2) text += ', ';
         if (index === length - 2) text += ' e ';
       });
 

@@ -1,32 +1,31 @@
 <template>
-  <div class="pl-3 pr-3">
-    <b-tabs
-      v-model="selectedTab"
-      type="is-toggle"
-      variant="is-primary"
-      :destroy-on-hide="true"
-      :animated="false"
+  <div class="pl-4 pr-4">
+    <b-dropdown
+      v-model="selectedDay"
+      aria-role="list"
       @change="updateRange"
       expanded
     >
-      <b-tab-item label="Agora" value="next"></b-tab-item>
-      <b-tab-item label="Ter" value="2020-11-17"></b-tab-item>
-      <b-tab-item label="Qua" value="2020-11-18"></b-tab-item>
-      <b-tab-item label="Qui" value="2020-11-19"></b-tab-item>
-      <b-tab-item label="Sex" value="2020-11-20"></b-tab-item>
-      <b-tab-item label="Sáb" value="2020-11-21"></b-tab-item>
-    </b-tabs>
+      <button class="button is-primary fill-space" type="button" slot="trigger">
+        <template>
+          <span>{{ selectedDay.label }}</span>
+        </template>
+        <b-icon icon="caret-down" class="ml-auto"></b-icon>
+      </button>
 
-    <!-- <b-field class="is-hidden-touch">
-      <b-input placeholder="Pesquisar..."
-        type="search"
-      />
-      <div class="control">
-        <button class="button">
-          <b-icon icon="search" class="pl-5 pr-5" />
-        </button>
-      </div>
-    </b-field>-->
+      <b-dropdown-item
+        v-for="(menu, index) in daysOptions"
+        :key="index"
+        :value="menu"
+        aria-role="listitem"
+      >
+        <div class="media">
+          <div class="media-content">
+            <h3>{{ menu.label }}</h3>
+          </div>
+        </div>
+      </b-dropdown-item>
+    </b-dropdown>
   </div>
 </template>
 
@@ -41,40 +40,27 @@ export default {
     input: String,
   },
   data: () => ({
-    selectedTab: 0,
-    tabEnum: {
-      0: 'next',
-      1: '2020-11-17',
-      2: '2020-11-18',
-      3: '2020-11-19',
-      4: '2020-11-20',
-      5: '2020-11-21',
-    },
+    selectedDay: { label: 'Agora', value: 'next' },
+    daysOptions: [
+      { label: 'Agora', value: 'next' },
+      { label: '17/11 Terça-Feira', value: '2020-11-17' },
+      { label: '18/11 Quarta-Feira', value: '2020-11-18' },
+      { label: '19/11 Quinta-Feira', value: '2020-11-19' },
+      { label: '20/11 Sexta-Feira', value: '2020-11-20' },
+      { label: '21/11 Sábado', value: '2020-11-21' },
+    ],
+
   }),
   methods: {
-    enumToString(value) {
-      return this.tabEnum[value];
-    },
-    stringToEnum(value) {
-      const foundEnum = Object.keys(this.tabEnum)
-        .find(key => this.tabEnum[key] === value);
-      if (!foundEnum) return 0;
-      return Number(foundEnum);
-    },
     updateRange(ev) {
-      const range = this.enumToString(ev);
-      this.$emit('change', range);
-      return range;
+      this.$emit('change', ev.value);
     },
   },
   watch: {
     input(newValue) {
       if (!newValue) return;
-      this.selectedTab = this.stringToEnum(newValue);
+      this.selectedTab = this.daysOptions.find(day => day.value === newValue);
     },
-  },
-  created() {
-    this.selectedTab = this.stringToEnum(this.input);
   },
 };
 </script>
@@ -89,5 +75,15 @@ section.tab-content {
 .tabs.is-toggle li.is-active a {
   background-color: $secondary;
   border-color: $secondary;
+}
+</style>
+
+<style lang="scss" scoped>
+.fill-space {
+  width: 100%;
+}
+
+.ml-auto {
+  margin-left: auto !important;
 }
 </style>

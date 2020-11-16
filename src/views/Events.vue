@@ -5,10 +5,10 @@
     <div class="container">
       <div class="columns is-desktop is-multiline flex-events">
         <div class="column is-4-desktop is-hidden-touch">
-          <p class="title is-4 m-4 mt-5 mb-1">Filtrar</p>
+          <p class="title is-4 m-4 mt-5 mb-1 has-text-white">Filtrar</p>
         </div>
         <div class="column is-8-desktop">
-          <p class="title is-4 m-4 mt-5 mb-1">Próximos Eventos</p>
+          <p class="title is-4 m-4 mt-5 mb-1 has-text-white">Próximos Eventos</p>
         </div>
         <div class="column is-4-desktop">
           <filter-bar v-model="selectedTab" />

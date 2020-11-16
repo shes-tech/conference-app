@@ -4,7 +4,7 @@
       <div class="mb-5">
         <b-button
           class="mr-4"
-          type="is-text"
+          type="is-text is-dark"
           tag="a"
           href="https://italolelis.com/posts/shestech-app-pt/"
           rel="noopener"
@@ -13,7 +13,7 @@
         >Sobre</b-button>
         <b-button
           class="mr-4"
-          type="is-text"
+          type="is-text is-dark"
           tag="a"
           href="https://github.com/shes-tech/conference-app"
           rel="noopener"
@@ -43,3 +43,9 @@ export default {
   name: 'Footer',
 };
 </script>
+
+<style lang="scss" scoped>
+footer {
+  background-color: #313131;
+}
+</style>

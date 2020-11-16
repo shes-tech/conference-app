@@ -3,7 +3,7 @@
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         <img
-          src="https://static1.squarespace.com/static/583ca58137c5810ef26a2e95/t/5d43921770e0f000010369e9/1570679114281/?format=1500w"
+          src="https://static1.squarespace.com/static/583ca58137c5810ef26a2e95/t/5f5070f146e3c302a0c2a1f9/1604689057447/?format=320w"
           alt="She's Tech Conference 2019 logo"
         />
       </b-navbar-item>
@@ -20,7 +20,7 @@
       >Programação</b-navbar-item>
       <b-navbar-item
         tag="a"
-        href="https://shestech-2019.netlify.app"
+        href="https://shestech.org/conference-2019"
       >2019</b-navbar-item>
       <b-navbar-item
         tag="a"
@@ -47,7 +47,7 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <a class="button is-primary" href="https://shestech-admin.netlify.app">
+          <a class="button is-primary" href="https://admin.shestech.org/">
             <b-icon
               icon="user-cog"
               size="is-small"

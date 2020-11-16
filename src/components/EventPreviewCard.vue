@@ -1,20 +1,21 @@
 <template>
   <router-link
     tag="a"
-    class="tile is-child box p-4 is-unselectable is-tertiary"
+    class="card-preview tile is-child box p-4 is-unselectable is-primary"
     :to="`/events/${event.id}`"
   >
     <div>
       <p
         v-if="event.startTime"
-        class="subtitle is-uppercase has-text-secondary has-text-weight-semibold is-6 pb-2"
+        class="subtitle is-uppercase date-text has-text-weight-semibold is-6 pb-2"
       >
         {{ event.startTime.toDate() | time }}
         <span v-if="event.endTime">- {{ event.endTime.toDate() | time }}</span>,
-        {{ event.startTime.toDate() | date }}
+        &nbsp; &nbsp; {{ event.startTime.toDate() | date }}
+        &nbsp; {{ event.startTime.toDate() | day }}
       </p>
-      <p class="preview-title title is-5 has-text-weight-bold">{{ event.title }}</p>
-      <div class="speaker-section subtitle is-6">
+      <p class="preview-title title is-5 has-text-white has-text-weight-bold">{{ event.title }}</p>
+      <div class="speaker-section subtitle has-text-grey is-6 speakers-text">
         <span>{{ speakersNames }}</span>
         <div
           v-for="(img, index) in speakersPictures"
@@ -51,7 +52,7 @@ export default {
 
       speakers.forEach((speaker, index) => {
         text += speaker.name;
-        if (index < length - 2) text += ' , ';
+        if (index < length - 2) text += ', ';
         if (index === length - 2) text += ' e ';
       });
 
@@ -72,6 +73,9 @@ export default {
     },
     date(date) {
       return format(date, 'EEEE', { locale: pt });
+    },
+    day(date) {
+      return format(date, 'dd/MM', { locale: pt });
     },
   },
 };
@@ -119,6 +123,20 @@ export default {
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 0.4em;
+  }
+}
+
+.card-preview {
+  background-color: #343535;
+}
+
+.date-text {
+  color: #d28bb1;
+}
+
+.speakers-text {
+  span {
+    color: #b5b1aa;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="base-main">
     <nav-bar />
     <router-view/>
     <custom-footer />
@@ -43,5 +43,13 @@ export default {
 .fade-enter,
 .fade-leave-active {
   opacity: 0
+}
+
+</style>
+
+<style lang="scss">
+.base-main {
+  background-color: #212222;
+  color: #e8e6e3;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="card has-background-light">
-    <div class="card-content">
+    <div class="card-content speaker-card">
       <div class="media">
         <div class="media-left">
-          <figure v-if="speaker.picture" class="speaker-img image is-128x128">
+          <figure v-if="speaker.picture" class="speaker-img image is-96x96">
             <img :src="speaker.picture" alt="Foto da Palestrante" class="is-rounded" />
           </figure>
           <b-icon
@@ -12,11 +12,13 @@
             icon="user"
           />
         </div>
-        <div class="media-content">
-          <p class="title is-3 mt-2">{{ speaker.name }}</p>
-          <div v-if="speaker.minibio" class="content" v-html="bio"></div>
+        <div>
+          <p v-if="speaker.picture" class="title is-4 mt-5 has-text-white">{{ speaker.name }}</p>
+          <p v-else class="title is-4 mt-3 has-text-white">{{ speaker.name }}</p>
         </div>
       </div>
+
+      <div v-if="speaker.minibio" class="content has-text-white" v-html="bio"></div>
 
       <div v-if="hasSocial" class="card-footer pt-4">
         <p class="mr-4">Siga:</p>
@@ -115,8 +117,12 @@ export default {
 .speaker-img {
   img {
     object-fit: cover;
-    width: 128px;
-    height: 128px;
+    width: 96px;
+    height: 96px;
   }
+}
+
+.speaker-card {
+  background-color: #343535;
 }
 </style>

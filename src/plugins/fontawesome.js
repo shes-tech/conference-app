@@ -13,6 +13,7 @@ import {
   faLaughBeam,
   faCalendarPlus,
   faUserCog,
+  faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -40,6 +41,7 @@ library.add(
   faLaughBeam,
   faCalendarPlus,
   faUserCog,
+  faCaretDown,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

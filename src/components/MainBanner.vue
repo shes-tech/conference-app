@@ -2,22 +2,31 @@
   <section class="banner hero is-medium is-primary has-background is-transparent is-bold">
     <img
       src="/universe.jpg"
-      class="blend-object hero-background is-transparent"
+      class="hero-background is-transparent"
       alt="No plano de fundo, imagem mostrando o universo"
     />
     <div class="hero-body">
-      <div class="container">
-        <p class="title is-3 pb-5">
+      <div class="container has-text-centered">
+        <p class="title is-3 pb-5 is-uppercase">
           Programação
         </p>
         <p class="subtitle is-5">
-          Junte-se a nós em três dias de workshops, palestras e
-          painéis de especialistas no maior evento para mulheres
-          na tecnologia do Brasil!
+          Junte-se a nós nesses 5 dias de workshops,
+          palestras e painéis de especialistas no maior
+          evento de mulheres na tecnologia do Brasil!
+        </p>
+        <p class="subtitle is-4">
+          INSPIRAR > ENGAJAR > CAPACITAR
+        </p>
+        <p class="subtitle is-5">
+          Teremos muito conteúdo, mentorias, trocas e
+          interação no Canal do Discord e na Sala do Zoom.
+        </p>
+        <p class="subtitle is-4">
+          Vamos Juntes!
         </p>
         <p class="is-5 pt-5 pb-1 mb-1">
-          * Os horários estão sujeito a alterações.
-          Atualize a página para ver os horários atualizados.
+          #ShesTechConference2020
         </p>
       </div>
     </div>
@@ -43,7 +52,7 @@ export default {
     width: 100%;
     height: 100%;
     &.is-transparent {
-      opacity: 0.3;
+      opacity: 0.9;
     }
   }
 }
