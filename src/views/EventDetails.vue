@@ -57,9 +57,9 @@
           <p v-else-if="isEventToHappen" class="mt-5">
             <b-button
               type="is-white" icon-left="calendar-plus" outlined
-              @click="createGoogleCalendar"
+              tag="a" :href="calendarUrl" target="_blank"
             >
-              Adicionar ao seu calendário
+              Adicionar ao Google Agenda
             </b-button>
           </p>
         </div>
@@ -115,7 +115,7 @@ import { format, isBefore, isAfter } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
 import { getIdFromURL } from 'vue-youtube-embed';
-import { createCalendar } from '@/calendar';
+import { createCalendar, getCalendarUrl } from '@/calendar';
 
 import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
 import PlaceholderEventDescription from '../components/placeholders/PlaceholderEventDescription.vue';
@@ -151,6 +151,8 @@ export default {
         ...this.event,
         tag: this.tag && this.tag.name,
         speakers: this.speakersNames,
+        startTime: this.event.startTime.toDate(),
+        endTime: this.event.endTime.toDate(),
       };
       createCalendar(event);
     },
@@ -211,6 +213,18 @@ export default {
       const before = isBefore(now, start.toDate());
 
       return before;
+    },
+    calendarUrl() {
+      if (!this.event.title) return '';
+
+      const event = {
+        ...this.event,
+        tag: this.tag && this.tag.name,
+        speakers: this.speakersNames,
+        startTime: this.event.startTime.toDate(),
+        endTime: this.event.endTime.toDate(),
+      };
+      return getCalendarUrl(event);
     },
   },
   watch: {
