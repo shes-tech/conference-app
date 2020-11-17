@@ -15,6 +15,7 @@ import {
   faUserCog,
   faCaretDown,
   faPodcast,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -22,6 +23,7 @@ import {
   faInstagram,
   faFacebookF,
   faTwitter,
+  faDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -44,6 +46,8 @@ library.add(
   faUserCog,
   faCaretDown,
   faPodcast,
+  faArrowLeft,
+  faDiscord,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

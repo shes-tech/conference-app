@@ -4,6 +4,13 @@
     <section v-if="!isLoading" class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container">
+          <b-button
+            type="is-white" icon-left="arrow-left" class="mb-5"
+            tag="router-link" to="/events#next-events"
+          >
+            Voltar para programação
+          </b-button>
+
           <b-tag v-if="event.type" class="mb-4">{{ event.type }}</b-tag>
           <h1 class="title is-3">
             {{ event.title }}
@@ -69,7 +76,7 @@
       <div class="columns is-desktop">
         <div class="column is-6-desktop mb-5">
           <div v-if="!isLoading">
-            <p class="title is-5 has-text-white">Assistir Trilha</p>
+            <p class="title is-5 has-text-white">Assistir Palco</p>
             <youtube-media
               :video-id="youtubeLink"
               :player-vars="{ autoplay: isEventHappening }"

@@ -6,7 +6,13 @@
       alt="No plano de fundo, imagem mostrando o universo"
     />
     <div class="hero-body">
-      <div class="container has-text-centered">
+      <b-button
+        type="is-primary" icon-left="arrow-left" class="back-btn mb-5"
+        tag="a" href="https://shestech.org/"
+      >
+        Voltar para página inicial
+      </b-button>
+      <div class="container has-text-centered mt-6">
         <p class="title is-3 pb-5 is-uppercase">
           Programação
         </p>
@@ -26,6 +32,15 @@
           Vamos Juntes!
         </p>
         <p class="is-5 pt-5 pb-1 mb-1">
+          <b-button
+            type="is-secondary" size="is-medium" class="is-uppercase"
+            tag="a" href="https://discord.gg/BRvCs5Fv" target="_blank"
+          >
+            <b-icon icon="discord" pack="fab" class="vertical-align" />
+            <span class="ml-3">Chat Oficial</span>
+          </b-button>
+        </p>
+        <p class="is-5 pt-4 pb-1 mb-1">
           #ShesTechConference2020
         </p>
       </div>
@@ -59,5 +74,15 @@ export default {
 
 .blend-object {
   mix-blend-mode: soft-light;
+}
+
+.hero-body {
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
 </style>

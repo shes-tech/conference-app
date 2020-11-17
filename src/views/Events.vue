@@ -8,7 +8,7 @@
           <p class="title is-4 m-4 mt-5 mb-1 has-text-white">Filtrar</p>
         </div>
         <div class="column is-8-desktop">
-          <p class="title is-4 m-4 mt-5 mb-1 has-text-white">Próximos Eventos</p>
+          <p id="next-events" class="title is-4 m-4 mt-5 mb-1 has-text-white">Próximos Eventos</p>
         </div>
         <div class="column is-4-desktop">
           <filter-bar v-model="selectedTab" />
