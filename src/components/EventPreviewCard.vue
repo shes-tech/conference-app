@@ -25,11 +25,12 @@
           <img v-if="img" :src="img" class="speaker-img" />
         </div>
       </div>
-      <p class="subtitle is-6 has-text-grey-light">{{ tag.name }}</p>
+
+      <p class="arena subtitle is-5 has-text-grey-light">{{ tag.name }}</p>
 
       <p
         v-if="isEventHappening"
-        class="is-live subtitle is-6"
+        class="is-live subtitle is-5 pl-3"
       >
         <b-icon
           icon="podcast"
@@ -37,6 +38,7 @@
           class="vertical-align mr-3"
         ></b-icon>
         Ao vivo
+        <span class="disclaimer">- Clique para Assistir</span>
       </p>
     </div>
   </router-link>
@@ -167,5 +169,13 @@ export default {
 
 .is-live {
   color: #FE8A86;
+  span.disclaimer {
+    color: #b5b1aa;
+  }
+}
+
+.arena {
+  margin-top: 0.8em;
+  margin-bottom: 0.2em;
 }
 </style>

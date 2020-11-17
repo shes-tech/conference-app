@@ -11,7 +11,10 @@
         type="button" slot="trigger"
       >
         <template>
-          <span>{{ selectedDay.label }}</span>
+          <span v-if="!selectedDay || selectedDay.label === 'Agora'">
+            Escolha o dia
+          </span>
+          <span v-else>{{ selectedDay.label }}</span>
         </template>
         <b-icon icon="caret-down" class="ml-auto"></b-icon>
       </button>

@@ -36,11 +36,6 @@
             ></b-icon>
             {{ tag.name }}
           </p>
-          <!-- <p v-if="tag.link" class="mt-5">
-            <b-button type="is-white" icon-left="calendar-plus" outlined>
-              Salvar evento no Google Agenda
-            </b-button>
-          </p> -->
           <p
             v-if="isEventHappening"
             class="live-event mt-5 subtitle is-4 has-text-danger is-unselectable"
@@ -52,6 +47,11 @@
             ></b-icon>
             Ao vivo
           </p>
+          <!-- <p class="mt-5">
+            <b-button type="is-white" icon-left="calendar-plus" outlined>
+              Salvar evento no Google Agenda
+            </b-button>
+          </p> -->
         </div>
       </div>
     </section>
@@ -67,7 +67,7 @@
 
     <div class="container p-5">
       <div class="columns is-desktop">
-        <div class="column is-5-desktop mb-5">
+        <div class="column is-6-desktop mb-5">
           <div v-if="!isLoading">
             <p class="title is-5 has-text-white">Assistir Trilha</p>
             <youtube-media
@@ -230,6 +230,10 @@ export default {
   iframe {
     width: 100%;
     height: 400px;
+
+    @media only screen and (max-width: 600px) {
+      height: 200px;
+    }
   }
 }
 </style>
