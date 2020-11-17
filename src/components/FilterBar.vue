@@ -6,7 +6,10 @@
       @change="updateRange"
       expanded
     >
-      <button class="button is-primary fill-space" type="button" slot="trigger">
+      <button
+        class="button is-primary fill-space is-outlined has-text-white"
+        type="button" slot="trigger"
+      >
         <template>
           <span>{{ selectedDay.label }}</span>
         </template>
