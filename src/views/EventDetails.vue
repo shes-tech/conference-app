@@ -5,7 +5,7 @@
       <div class="hero-body">
         <div class="container">
           <b-button
-            type="is-white" icon-left="arrow-left" class="mb-5"
+            type="is-primary" icon-left="arrow-left" class="mb-5"
             tag="router-link" to="/events#next-events"
           >
             Voltar para programação
@@ -54,11 +54,14 @@
             ></b-icon>
             Ao vivo
           </p>
-          <!-- <p class="mt-5">
-            <b-button type="is-white" icon-left="calendar-plus" outlined>
-              Salvar evento no Google Agenda
+          <p v-else-if="isEventToHappen" class="mt-5">
+            <b-button
+              type="is-white" icon-left="calendar-plus" outlined
+              @click="createGoogleCalendar"
+            >
+              Adicionar ao seu calendário
             </b-button>
-          </p> -->
+          </p>
         </div>
       </div>
     </section>
@@ -112,6 +115,7 @@ import { format, isBefore, isAfter } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
 import { getIdFromURL } from 'vue-youtube-embed';
+import { createCalendar } from '@/calendar';
 
 import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
 import PlaceholderEventDescription from '../components/placeholders/PlaceholderEventDescription.vue';
@@ -142,7 +146,14 @@ export default {
       if (this.event.title) this.isLoading = false;
       else this.isLoading = true;
     },
-    downloadCalendar() {},
+    createGoogleCalendar() {
+      const event = {
+        ...this.event,
+        tag: this.tag && this.tag.name,
+        speakers: this.speakersNames,
+      };
+      createCalendar(event);
+    },
   },
   computed: {
     ...mapGetters({
@@ -161,7 +172,7 @@ export default {
       let text = '';
 
       speakers.forEach((speaker, index) => {
-        text += speaker.name;
+        text += speaker.name.trim ? speaker.name.trim() : speaker.name;
         if (index < length - 2) text += ', ';
         if (index === length - 2) text += ' e ';
       });
@@ -189,6 +200,17 @@ export default {
       const after = isAfter(now, start.toDate());
 
       return before && after;
+    },
+    isEventToHappen() {
+      const { event } = this;
+      const start = event.startTime;
+
+      if (!start) return false;
+
+      const now = new Date();
+      const before = isBefore(now, start.toDate());
+
+      return before;
     },
   },
   watch: {
