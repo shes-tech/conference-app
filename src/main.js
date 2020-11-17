@@ -6,6 +6,7 @@ import store from './store';
 // import './registerServiceWorker';
 import './plugins/fontawesome';
 import './plugins/buefy';
+import './plugins/youtube';
 import './assets/styles.scss';
 
 Vue.config.productionTip = false;

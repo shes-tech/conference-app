@@ -25,9 +25,6 @@ export default {
   },
   created() {
     this.fetchAllTags();
-    setTimeout(() => {
-      window.location.reload(1);
-    }, 300000);
   },
 };
 </script>

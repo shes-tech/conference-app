@@ -39,7 +39,16 @@ export default {
   },
   data: () => ({
     selectedTab: 'next',
+    timeout: null,
   }),
+  created() {
+    this.timeout = setTimeout(() => {
+      window.location.reload(1);
+    }, 300000);
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeout);
+  },
 };
 </script>
 

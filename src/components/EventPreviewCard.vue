@@ -26,12 +26,24 @@
         </div>
       </div>
       <p class="subtitle is-6 has-text-grey-light">{{ tag.name }}</p>
+
+      <p
+        v-if="isEventHappening"
+        class="is-live subtitle is-6"
+      >
+        <b-icon
+          icon="podcast"
+          size="is-small"
+          class="vertical-align mr-3"
+        ></b-icon>
+        Ao vivo
+      </p>
     </div>
   </router-link>
 </template>
 
 <script>
-import { format } from 'date-fns';
+import { format, isBefore, isAfter } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
 import { mapGetters } from 'vuex';
@@ -65,6 +77,19 @@ export default {
     tag() {
       const tagId = this.event.tag;
       return this.tags[tagId] || {};
+    },
+    isEventHappening() {
+      const { event } = this;
+      const start = event.startTime;
+      const end = event.endTime;
+
+      if (!start || !end) return false;
+
+      const now = new Date();
+      const before = isBefore(now, end.toDate());
+      const after = isAfter(now, start.toDate());
+
+      return before && after;
     },
   },
   filters: {
@@ -138,5 +163,9 @@ export default {
   span {
     color: #b5b1aa;
   }
+}
+
+.is-live {
+  color: #FE8A86;
 }
 </style>

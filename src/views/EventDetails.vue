@@ -41,6 +41,17 @@
               Salvar evento no Google Agenda
             </b-button>
           </p> -->
+          <p
+            v-if="isEventHappening"
+            class="live-event mt-5 subtitle is-4 has-text-danger is-unselectable"
+          >
+            <b-icon
+              icon="podcast"
+              size="is-small"
+              class="vertical-align mr-3"
+            ></b-icon>
+            Ao vivo
+          </p>
         </div>
       </div>
     </section>
@@ -58,14 +69,22 @@
       <div class="columns is-desktop">
         <div class="column is-5-desktop mb-5">
           <div v-if="!isLoading">
-            <p class="title is-5 has-text-white">Detalhes</p>
-            <p v-if="event.description">{{ event.description }}</p>
-            <p v-else>Nenhum detalhe foi fornecido para este evento.</p>
+            <p class="title is-5 has-text-white">Assistir Trilha</p>
+            <youtube-media
+              :video-id="youtubeLink"
+              :player-vars="{ autoplay: isEventHappening }"
+              class="youtube-embed"
+            />
           </div>
           <placeholder-description v-else />
         </div>
         <div class="column is-5-desktop is-offset-1-desktop">
-          <p class="title is-5 has-text-white">Palestrantes</p>
+          <p class="title is-5 has-text-white">Detalhes</p>
+          <placeholder-description v-if="isLoading" />
+          <p v-else-if="event.description">{{ event.description }}</p>
+          <p v-else>Nenhum detalhe foi fornecido para este evento.</p>
+
+          <p class="title is-5 mt-5 has-text-white">Palestrantes</p>
           <speaker-preview-card
             v-for="(speaker, index) in speakers"
             :key="index"
@@ -82,8 +101,10 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 
-import { format } from 'date-fns';
+import { format, isBefore, isAfter } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+
+import { getIdFromURL } from 'vue-youtube-embed';
 
 import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
 import PlaceholderEventDescription from '../components/placeholders/PlaceholderEventDescription.vue';
@@ -144,6 +165,24 @@ export default {
       const tagId = this.event.tag;
       return this.tags[tagId] || {};
     },
+    youtubeLink() {
+      const { link } = this.tag;
+      const id = getIdFromURL(link);
+      return id;
+    },
+    isEventHappening() {
+      const { event } = this;
+      const start = event.startTime;
+      const end = event.endTime;
+
+      if (!start || !end) return false;
+
+      const now = new Date();
+      const before = isBefore(now, end.toDate());
+      const after = isAfter(now, start.toDate());
+
+      return before && after;
+    },
   },
   watch: {
     event() {
@@ -176,5 +215,21 @@ export default {
 
 .transparent {
   opacity: 0;
+}
+
+.live-event {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: fit-content;
+  padding: 0.3em 0.6em;
+  border-radius: 8px;
+}
+</style>
+
+<style lang="scss">
+.youtube-embed {
+  iframe {
+    width: 100%;
+    height: 400px;
+  }
 }
 </style>
