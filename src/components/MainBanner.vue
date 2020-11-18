@@ -34,7 +34,7 @@
         <p class="is-5 pt-5 pb-1 mb-1">
           <b-button
             type="is-secondary" size="is-medium" class="is-uppercase"
-            tag="a" href="https://discord.gg/BRvCs5Fv" target="_blank"
+            tag="a" href="https://discord.gg/gAss2vSTFM" target="_blank"
           >
             <b-icon icon="discord" pack="fab" class="vertical-align" />
             <span class="ml-3">Chat Oficial</span>
