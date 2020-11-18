@@ -38,10 +38,6 @@
         tag="a"
         href="https://shestech.org/contato"
       >Contato</b-navbar-item>
-      <b-navbar-item
-        tag="a"
-        href="https://shestech.org/contato"
-      >Contato</b-navbar-item>
     </template>
 
     <template slot="end">
