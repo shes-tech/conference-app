@@ -51,7 +51,7 @@ function getCalendarUrl(event) {
     url: `https://conference.shestech.org/events/${event.id}`,
   });
 
-  let description = `Link: ${finalEvent.url}\n\n\n`
+  let description = `Link: ${finalEvent.url} \n\n\n`
     + `Palestrantes: ${event.speakers}`
     + `\n\n${event.description}`;
 
