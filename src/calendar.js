@@ -56,7 +56,7 @@ function getCalendarUrl(event) {
     + `\n\n${event.description}`;
 
   description = description.replace(/ /g, '+');
-  description = description.replace(/\n/g, '<br>');
+  description = description.replace(/\n/g, '%0D%0A');
   finalEvent.description = description;
 
   const url = 'https://www.google.com/calendar/render?action=TEMPLATE'
