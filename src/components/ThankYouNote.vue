@@ -13,10 +13,10 @@
         />
       </p>
       <p>
-        Obrigado por participar da
+        Obrigada por participar da
       </p>
       <p>
-        She'sTech Conference 2019!
+        She'sTech Conference 2020!
       </p>
     </div>
   </transition>

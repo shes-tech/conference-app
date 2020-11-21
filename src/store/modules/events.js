@@ -7,7 +7,7 @@ const db = firebase.firestore();
 
 const INITIAL_FETCH_LIMIT = 4;
 const UPDATE_FETCH_LIMIT = 6;
-const CONFERENCE_FINISH = '2020-11-22T03:00:00.000Z';
+const CONFERENCE_FINISH = '2020-11-21T19:00:00.000Z';
 
 const defaultState = {
   events: {},
