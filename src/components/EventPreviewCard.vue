@@ -7,31 +7,49 @@
     <div>
       <p
         v-if="event.startTime"
-        class="subtitle is-uppercase date-text has-text-weight-semibold is-6 pb-2"
+        class="
+          subtitle
+          is-uppercase
+          date-text
+          has-text-weight-semibold
+          is-6
+          pb-2
+        "
       >
         {{ event.startTime.toDate() | time }}
-        <span v-if="event.endTime">- {{ event.endTime.toDate() | time }}</span>,
-        &nbsp; &nbsp; {{ event.startTime.toDate() | date }}
-        &nbsp; {{ event.startTime.toDate() | day }}
+        <span v-if="event.endTime">- {{ event.endTime.toDate() | time }}</span
+        >, &nbsp; &nbsp; {{ event.startTime.toDate() | date }} &nbsp;
+        {{ event.startTime.toDate() | day }}
       </p>
-      <p class="preview-title title is-5 has-text-white has-text-weight-bold">{{ event.title }}</p>
-      <div class="speaker-section subtitle has-text-grey is-6 speakers-text">
-        <span>{{ speakersNames }}</span>
-        <div
-          v-for="(img, index) in speakersPictures"
-          :key="index"
-          class="container-img"
-        >
-          <img v-if="img" :src="img" class="speaker-img" />
+      <p class="preview-title title is-5 has-text-white has-text-weight-bold">
+        {{ event.title }}
+      </p>
+      <p class="description is-5 has-text-white">{{ event.description }}</p>
+      <div class="flex">
+        <div class="speaker-section subtitle has-text-grey is-6 speakers-text">
+          <span>{{ speakersNames }}</span>
+          <div
+            v-for="(img, index) in speakersPictures"
+            :key="index"
+            class="container-img"
+          >
+            <img v-if="img" :src="img" class="speaker-img" />
+          </div>
+        </div>
+        <div class="buttons">
+          <router-link
+            tag="a"
+            class="button is-primary"
+            :to="`/events/${event.id}`"
+          >
+            <strong>Assistir</strong>
+          </router-link>
         </div>
       </div>
 
       <p class="arena subtitle is-5 has-text-grey-light">{{ tag.name }}</p>
 
-      <p
-        v-if="isEventHappening"
-        class="is-live subtitle is-5 pl-3"
-      >
+      <p v-if="isEventHappening" class="is-live subtitle is-5 pl-3">
         <b-icon
           icon="podcast"
           size="is-small"
@@ -45,36 +63,36 @@
 </template>
 
 <script>
-import { format, isBefore, isAfter } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import { format, isBefore, isAfter } from "date-fns";
+import pt from "date-fns/locale/pt";
 
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'EventPreviewCard',
+  name: "EventPreviewCard",
   props: {
     event: Object,
   },
   computed: {
     ...mapGetters({
-      tags: 'tags/tags',
+      tags: "tags/tags",
     }),
     speakersNames() {
       const speakers = this.event.speakers || [];
       const { length } = speakers;
-      let text = '';
+      let text = "";
 
       speakers.forEach((speaker, index) => {
         text += speaker.name;
-        if (index < length - 2) text += ', ';
-        if (index === length - 2) text += ' e ';
+        if (index < length - 2) text += ", ";
+        if (index === length - 2) text += " e ";
       });
 
       return text;
     },
     speakersPictures() {
       const speakers = this.event.speakers || [];
-      return speakers.map(speaker => speaker.picture);
+      return speakers.map((speaker) => speaker.picture);
     },
     tag() {
       const tagId = this.event.tag;
@@ -96,13 +114,13 @@ export default {
   },
   filters: {
     time(date) {
-      return format(date, 'HH:mm', { locale: pt });
+      return format(date, "HH:mm", { locale: pt });
     },
     date(date) {
-      return format(date, 'EEEE', { locale: pt });
+      return format(date, "EEEE", { locale: pt });
     },
     day(date) {
-      return format(date, 'dd/MM', { locale: pt });
+      return format(date, "dd/MM", { locale: pt });
     },
   },
 };
@@ -112,7 +130,11 @@ export default {
 .preview-title {
   line-height: 1.4em;
 }
-
+.flex {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5vh;
+}
 .quick-info-container {
   display: flex;
   flex-direction: row;
@@ -168,7 +190,7 @@ export default {
 }
 
 .is-live {
-  color: #FE8A86;
+  color: #fe8a86;
   span.disclaimer {
     color: #b5b1aa;
   }
@@ -177,5 +199,8 @@ export default {
 .arena {
   margin-top: 0.8em;
   margin-bottom: 0.2em;
+}
+.buttons {
+  margin-left: 5vw;
 }
 </style>
