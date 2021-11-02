@@ -24,7 +24,9 @@
       <p class="preview-title title is-5 has-text-white has-text-weight-bold">
         {{ event.title }}
       </p>
-      <p class="description is-5 has-text-white">{{ event.description }}</p>
+      <p class="description is-5 has-text-white">
+        {{ event.description | trailText }}
+      </p>
       <div class="flex">
         <div class="speaker-section subtitle has-text-grey is-6 speakers-text">
           <span>{{ speakersNames }}</span>
@@ -122,6 +124,14 @@ export default {
     day(date) {
       return format(date, 'dd/MM', { locale: pt });
     },
+    trailText(text) {
+      const length = 180;
+      if (text.length <= length) return text;
+
+      const trailedText = text.substring(0, length);
+      const lastSpace = trailedText.lastIndexOf(' ');
+      return `${trailedText.substring(0, lastSpace)}...`;
+    },
   },
 };
 </script>
@@ -129,7 +139,9 @@ export default {
 <style lang="scss" scoped>
 .preview-title {
   line-height: 1.4em;
+  margin-bottom: 0.2em;
 }
+
 .flex {
   display: flex;
   justify-content: space-between;
