@@ -10,7 +10,8 @@
           rel="noopener"
           target="_blank"
           rounded
-        >Sobre</b-button>
+          >Sobre</b-button
+        >
         <b-button
           class="mr-4"
           type="is-text is-dark"
@@ -19,20 +20,29 @@
           rel="noopener"
           target="_blank"
           rounded
-        >GitHub</b-button>
+          >GitHub</b-button
+        >
       </div>
-      <p>
-        Este é um projeto de código aberto desenvolvido utilizando Vue.js
-      </p>
+      <p>Este é um projeto de código aberto desenvolvido utilizando Vue.js</p>
       <p>
         Made with
         <b-icon icon="heart" size="is-small" class="vertical-align ml-2 mr-2" />
         by
         <a
-          href="https://italolelis.com/"
+          href="https://github.com/ErikaMarcia"
+          class="credit-name"
           target="_blank"
           rel="”noopener”"
-        ><b>Italo Lelis</b></a>
+          ><b>Érika Márcia</b></a
+        >
+        and
+        <a
+          href="https://github.com/italohdc"
+          class="credit-name"
+          target="_blank"
+          rel="”noopener”"
+          ><b>Italo Lelis</b></a
+        >
       </p>
     </div>
   </footer>
@@ -47,5 +57,13 @@ export default {
 <style lang="scss" scoped>
 footer {
   background-color: #313131;
+}
+
+.credit-name {
+  color: #3273dc;
+
+  &:hover {
+    color: rgba($color: #3273dc, $alpha: 0.4);
+  }
 }
 </style>

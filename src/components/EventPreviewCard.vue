@@ -63,36 +63,36 @@
 </template>
 
 <script>
-import { format, isBefore, isAfter } from "date-fns";
-import pt from "date-fns/locale/pt";
+import { format, isBefore, isAfter } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
 
 export default {
-  name: "EventPreviewCard",
+  name: 'EventPreviewCard',
   props: {
     event: Object,
   },
   computed: {
     ...mapGetters({
-      tags: "tags/tags",
+      tags: 'tags/tags',
     }),
     speakersNames() {
       const speakers = this.event.speakers || [];
       const { length } = speakers;
-      let text = "";
+      let text = '';
 
       speakers.forEach((speaker, index) => {
         text += speaker.name;
-        if (index < length - 2) text += ", ";
-        if (index === length - 2) text += " e ";
+        if (index < length - 2) text += ', ';
+        if (index === length - 2) text += ' e ';
       });
 
       return text;
     },
     speakersPictures() {
       const speakers = this.event.speakers || [];
-      return speakers.map((speaker) => speaker.picture);
+      return speakers.map(speaker => speaker.picture);
     },
     tag() {
       const tagId = this.event.tag;
@@ -114,13 +114,13 @@ export default {
   },
   filters: {
     time(date) {
-      return format(date, "HH:mm", { locale: pt });
+      return format(date, 'HH:mm', { locale: pt });
     },
     date(date) {
-      return format(date, "EEEE", { locale: pt });
+      return format(date, 'EEEE', { locale: pt });
     },
     day(date) {
-      return format(date, "dd/MM", { locale: pt });
+      return format(date, 'dd/MM', { locale: pt });
     },
   },
 };
