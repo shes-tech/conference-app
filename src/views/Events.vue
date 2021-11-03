@@ -8,13 +8,14 @@
           <p class="title is-4 m-4 mt-5 mb-1 has-text-white">Filtrar</p>
         </div>
         <div class="column is-8-desktop">
-          <p id="next-events" class="title is-4 m-4 mt-5 mb-1 has-text-white">Próximos Eventos</p>
+          <p id="next-events" class="title is-4 m-4 mt-5 mb-1 has-text-white">Lista de Eventos</p>
         </div>
         <div class="column is-4-desktop">
-          <filter-bar v-model="selectedTab" />
+          <filter-bar v-model="selectedTab" @search="setSearchQuery" />
         </div>
         <div class="column is-8-desktop">
           <next-events v-if="selectedTab === 'next'" />
+          <search-events v-else-if="selectedTab === 'search'" :query='searchQuery' />
           <events-by-day v-else :day="selectedTab" />
         </div>
       </div>
@@ -27,6 +28,7 @@
 import MainBanner from '../components/MainBanner.vue';
 import FilterBar from '../components/FilterBar.vue';
 import NextEvents from './NextEvents.vue';
+import SearchEvents from './SearchEvents.vue';
 import EventsByDay from './EventsByDay.vue';
 
 export default {
@@ -35,12 +37,19 @@ export default {
     'main-banner': MainBanner,
     'filter-bar': FilterBar,
     'next-events': NextEvents,
+    'search-events': SearchEvents,
     'events-by-day': EventsByDay,
   },
   data: () => ({
     selectedTab: 'next',
+    searchQuery: '',
     timeout: null,
   }),
+  methods: {
+    setSearchQuery(ev) {
+      this.searchQuery = ev;
+    },
+  },
   created() {
     this.timeout = setTimeout(() => {
       window.location.reload(1);
