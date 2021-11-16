@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import { parse, set, isAfter } from 'date-fns';
 
 const db = firebase.firestore();
+const COLLECTION_NAME = 'events-2021';
 
 const INITIAL_FETCH_LIMIT = 4;
 const UPDATE_FETCH_LIMIT = 6;
@@ -14,7 +15,6 @@ const defaultState = {
   nextEvents: [],
   searchEvents: [],
   eventsByDay: {
-    '2020-11-17': [],
     '2021-11-17': [],
     '2021-11-18': [],
     '2021-11-19': [],
@@ -23,7 +23,6 @@ const defaultState = {
   canFetchMore: {
     next: false,
     search: false,
-    '2020-11-17': false,
     '2021-11-17': false,
     '2021-11-18': false,
     '2021-11-19': false,
@@ -32,7 +31,6 @@ const defaultState = {
   lastFetchedSnapshot: {
     next: null,
     search: null,
-    '2020-11-17': null,
     '2021-11-17': null,
     '2021-11-18': null,
     '2021-11-19': null,
@@ -56,7 +54,7 @@ const actions = {
     const events = {};
 
     const now = new Date();
-    const snapshot = await db.collection('events-2020')
+    const snapshot = await db.collection(COLLECTION_NAME)
       .orderBy('endTime')
       .orderBy('startTime')
       .where('endTime', '>=', now)
@@ -79,7 +77,7 @@ const actions = {
     if (!lastElement || !state.canFetchMore.next) return;
 
     const events = {};
-    const snapshot = await db.collection('events-2020')
+    const snapshot = await db.collection(COLLECTION_NAME)
       .orderBy('startTime')
       .startAfter(lastElement)
       .limit(UPDATE_FETCH_LIMIT)
@@ -106,7 +104,7 @@ const actions = {
     let end = parse(day, 'yyyy-MM-dd', now);
     end = set(end, { hours: 23, minutes: 59 });
 
-    const snapshot = await db.collection('events-2020')
+    const snapshot = await db.collection(COLLECTION_NAME)
       .where('startTime', '>=', start)
       .where('startTime', '<=', end)
       .orderBy('startTime')
@@ -136,7 +134,7 @@ const actions = {
     let end = parse(day, 'yyyy-MM-dd', now);
     end = set(end, { hours: 23, minutes: 59 });
 
-    const snapshot = await db.collection('events-2020')
+    const snapshot = await db.collection(COLLECTION_NAME)
       .where('startTime', '>=', start)
       .where('startTime', '<=', end)
       .orderBy('startTime')
@@ -158,7 +156,7 @@ const actions = {
   fetchEventById: async ({ state, commit }, id) => {
     if (state.events[id]) return;
 
-    const document = await db.collection('events-2020').doc(id).get();
+    const document = await db.collection(COLLECTION_NAME).doc(id).get();
 
     const event = {
       id: document.id,
@@ -177,7 +175,7 @@ const actions = {
 
     const events = {};
 
-    const snapshot = await db.collection('events-2020')
+    const snapshot = await db.collection(COLLECTION_NAME)
       .orderBy('title')
       .startAt(query)
       .endAt(`${query}${'\uf8ff'}`)
@@ -203,7 +201,7 @@ const actions = {
     if (!lastElement || !state.canFetchMore.search) return;
 
     const events = {};
-    const snapshot = await db.collection('events-2020')
+    const snapshot = await db.collection(COLLECTION_NAME)
       .orderBy('title')
       .startAt(query)
       .endAt(`${query}${'\uf8ff'}`)

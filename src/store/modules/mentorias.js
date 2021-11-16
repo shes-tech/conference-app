@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import firebase from 'firebase/app';
 
-// import { parse, set, isAfter } from 'date-fns';
-
 const db = firebase.firestore();
 const COLLECTION_NAME = 'mentorias-2021';
 

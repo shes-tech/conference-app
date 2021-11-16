@@ -17,28 +17,28 @@
         >Próximos</button-toggle>
       </div>
     </div>
-    <div class="columns is-mobile">
-      <div class="column is-half btn-day-left">
+    <div class="rows is-mobile">
+      <div class="row is-full btn-day-left">
         <button-toggle
-          :selected="isSelectedDay('2020-11-17')"
-          @select="setDay('2020-11-17')"
+          :selected="isSelectedDay('2021-11-17')"
+          @select="setDay('2021-11-17')"
         >Qua 17/11</button-toggle>
       </div>
-      <div class="column is-half btn-day-right">
+      <div class="row is-full btn-day-right">
         <button-toggle
           :selected="isSelectedDay('2021-11-18')"
           @select="setDay('2021-11-18')"
         >Qui 18/11</button-toggle>
       </div>
     </div>
-    <div class="columns is-mobile">
-      <div class="column is-half btn-day-left">
+    <div class="rows is-mobile">
+      <div class="row is-full btn-day-left">
         <button-toggle
           :selected="isSelectedDay('2021-11-19')"
           @select="setDay('2021-11-19')"
         >Sex 19/11</button-toggle>
       </div>
-      <div class="column is-half btn-day-right">
+      <div class="row is-full btn-day-right">
         <button-toggle
           :selected="isSelectedDay('2021-11-20')"
           @select="setDay('2021-11-20')"
@@ -134,13 +134,13 @@ section.tab-content {
 }
 
 .btn-day-left {
-  padding-right: 0.2em;
+  padding-right: 0em;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
 }
 
 .btn-day-right {
-  padding-left: 0.2em;
+  padding-left: 0em;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
 }

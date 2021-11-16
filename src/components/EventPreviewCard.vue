@@ -24,20 +24,21 @@
       <p class="preview-title title is-5 has-text-white has-text-weight-bold">
         {{ event.title }}
       </p>
-      <p class="description is-5 has-text-white">
+      <p v-if="event.description" class="description is-5 has-text-white">
         {{ event.description | trailText }}
       </p>
-      <div class="flex">
-        <div class="speaker-section subtitle has-text-grey is-6 speakers-text">
-          <span>{{ speakersNames }}</span>
-          <div
-            v-for="(img, index) in speakersPictures"
-            :key="index"
-            class="container-img"
-          >
-            <img v-if="img" :src="img" class="speaker-img" />
-          </div>
+      <div class="speaker-section subtitle has-text-grey is-6 speakers-text">
+        <span>{{ speakersNames }}</span>
+        <div
+          v-for="(img, index) in speakersPictures"
+          :key="index"
+          class="container-img"
+        >
+          <img v-if="img" :src="img" class="speaker-img" />
         </div>
+      </div>
+      <div class="flex-preview-btns">
+        <p class="arena subtitle is-5 has-text-grey-light">{{ tag.name }}</p>
         <div class="buttons">
           <router-link
             tag="a"
@@ -49,8 +50,6 @@
         </div>
       </div>
 
-      <p class="arena subtitle is-5 has-text-grey-light">{{ tag.name }}</p>
-
       <p v-if="isEventHappening" class="is-live subtitle is-5 pl-3">
         <b-icon
           icon="podcast"
@@ -58,7 +57,7 @@
           class="vertical-align mr-3"
         ></b-icon>
         Ao vivo
-        <span class="disclaimer">- Clique para Assistir</span>
+        <!-- <span class="disclaimer">- Clique para Assistir</span> -->
       </p>
     </div>
   </router-link>
@@ -142,11 +141,12 @@ export default {
   margin-bottom: 0.2em;
 }
 
-.flex {
+.flex-preview-btns {
   display: flex;
   justify-content: space-between;
-  margin-top: 5vh;
+  margin-top: 0.4em;
 }
+
 .quick-info-container {
   display: flex;
   flex-direction: row;
