@@ -41,8 +41,6 @@ const actions = {
     const lastSnapshot = snapshot.docs[snapshot.docs.length - 1];
     const canLoadMore = Object.keys(mentorias).length >= INITIAL_FETCH_LIMIT;
 
-    console.log('fetchNextMentorias', mentorias);
-
     commit('APPEND_MENTORIAS_TO_NEXT', { mentorias });
     commit('SAVE_LAST_FETCHED_SNAPSHOT', { snapshot: lastSnapshot, type: 'next' });
     commit('CAN_FETCH_MORE', { status: canLoadMore, type: 'next' });

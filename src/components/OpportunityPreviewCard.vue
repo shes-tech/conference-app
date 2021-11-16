@@ -40,9 +40,6 @@
 </template>
 
 <script>
-// import { format } from 'date-fns';
-// import pt from 'date-fns/locale/pt';
-
 import { mapGetters } from 'vuex';
 
 export default {
