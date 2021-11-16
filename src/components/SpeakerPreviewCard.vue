@@ -21,7 +21,7 @@
       <div v-if="speaker.minibio" class="content has-text-white" v-html="bio"></div>
 
       <div v-if="hasSocial" class="card-footer pt-4">
-        <p class="mr-4">Siga:</p>
+        <p class="mr-4 has-text-white">Siga:</p>
         <a v-if="speaker.social.site" :href="speaker.social.site" target="_blank" rel="”noopener”">
           <b-icon icon="globe-americas" pack="fab" class="vertical-align mr-4" />
         </a>
