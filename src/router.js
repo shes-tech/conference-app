@@ -25,6 +25,16 @@ export default new Router({
           name: 'event-details',
           component: () => import(/* webpackChunkName: "event-detail" */ './views/EventDetails.vue'),
         },
+        {
+          path: 'career',
+          name: 'career',
+          component: () => import(/* webpackChunkName: "career" */ './views/Career.vue'),
+        },
+        {
+          path: 'career/:id',
+          name: 'career-details',
+          component: () => import(/* webpackChunkName: "career-detail" */ './views/CareerDetails.vue'),
+        },
       ],
     },
     {

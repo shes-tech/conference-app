@@ -3,8 +3,8 @@
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         <img
-          src="https://static1.squarespace.com/static/583ca58137c5810ef26a2e95/t/5f5070f146e3c302a0c2a1f9/1604689057447/?format=320w"
-          alt="She's Tech Conference 2019 logo"
+          src="@/assets/logo.png"
+          alt="She's Tech Conference 2021"
         />
       </b-navbar-item>
     </template>
@@ -19,17 +19,14 @@
         :active="$route.path === '/events'"
       >Programação</b-navbar-item>
       <b-navbar-item
-        tag="a"
-        href="https://shestech.org/conference-2019"
-      >2019</b-navbar-item>
+        tag="router-link"
+        to="/career"
+        :active="$route.path === '/career'"
+      >Mentoria</b-navbar-item>
       <b-navbar-item
         tag="a"
-        href="https://shestech.org/conference-2018"
-      >2018</b-navbar-item>
-      <b-navbar-item
-        tag="a"
-        href="https://shestech.org/conference-2017"
-      >2017</b-navbar-item>
+        href="https://forms.gle/VesWEZkgX57jVgKe8"
+      >Oportunidades</b-navbar-item>
       <b-navbar-item
         tag="a"
         href="https://shestech.org/quem-somos"

@@ -16,6 +16,8 @@ import {
   faCaretDown,
   faPodcast,
   faArrowLeft,
+  faPlus,
+  faCalendar,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -48,6 +50,8 @@ library.add(
   faPodcast,
   faArrowLeft,
   faDiscord,
+  faPlus,
+  faCalendar,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
