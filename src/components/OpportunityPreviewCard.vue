@@ -2,31 +2,38 @@
   <router-link
     tag="a"
     class="card-preview tile is-child box p-4 is-unselectable is-primary"
-    :to="`/career/asdf`"
+    :to="`/career/${mentoria.id}`"
   >
     <div>
       <p
-        class="
-          subtitle
-          is-uppercase
-          date-text
-          has-text-weight-semibold
-          is-6
-          pb-2
-        "
+        :class="[
+          'subtitle is-uppercase date-text',
+          'has-text-weight-semibold is-6 pb-2',
+          { 'has-text-success': mentoria.isAvailable },
+          { 'has-text-danger': !mentoria.isAvailable },
+        ]"
       >
         <b-icon
-          icon="map-marker-alt"
+          icon="genderless"
           size="is-small"
           class="vertical-align mr-3"
         />
-        Belo Horizonte, MG
+        {{
+          mentoria.isAvailable ?
+          'Horários Disponíveis' :
+          'Horários Indisponíveis'
+        }}
       </p>
       <p class="preview-title title is-5 has-text-white has-text-weight-bold">
-        Vaga de Desenvolvedor Full-Stack
+        {{ mentoria.title }}
       </p>
       <p class="description is-5 has-text-white">
-        Nome da Empresa
+        {{ mentoria.mentora.cargo }}
+        <span v-if="mentoria.mentora.cargo">@ {{ mentoria.mentora.empresa }}</span>
+      </p>
+
+      <p class="description subtitle is-5 has-text-white mt-5">
+        {{ mentoria.mentora.name }}
       </p>
     </div>
   </router-link>
@@ -41,65 +48,12 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'OpportunityPreviewCard',
   props: {
-    opportunity: Object,
+    mentoria: Object,
   },
   computed: {
     ...mapGetters({
       tags: 'tags/tags',
     }),
-    // speakersNames() {
-    //   const speakers = this.opportunity.speakers || [];
-    //   const { length } = speakers;
-    //   let text = '';
-
-    //   speakers.forEach((speaker, index) => {
-    //     text += speaker.name;
-    //     if (index < length - 2) text += ', ';
-    //     if (index === length - 2) text += ' e ';
-    //   });
-
-    //   return text;
-    // },
-    // speakersPictures() {
-    //   const speakers = this.opportunity.speakers || [];
-    //   return speakers.map(speaker => speaker.picture);
-    // },
-    // tag() {
-    //   const tagId = this.opportunity.tag;
-    //   return this.tags[tagId] || {};
-    // },
-    // isEventHappening() {
-    //   const { event } = this;
-    //   const start = opportunity.startTime;
-    //   const end = opportunity.endTime;
-
-    //   if (!start || !end) return false;
-
-    //   const now = new Date();
-    //   const before = isBefore(now, end.toDate());
-    //   const after = isAfter(now, start.toDate());
-
-    //   return before && after;
-    // },
-  },
-  filters: {
-    // time(date) {
-    //   return format(date, 'HH:mm', { locale: pt });
-    // },
-    // date(date) {
-    //   return format(date, 'EEEE', { locale: pt });
-    // },
-    // day(date) {
-    //   return format(date, 'dd/MM', { locale: pt });
-    // },
-    // trailText(text) {
-    //   const length = 180;
-    //   if (text.length <= length) return text;
-
-    //   const trailedText = text.substring(0, length);
-    //   const lastSpace = trailedText.lastIndexOf(' ');
-    //   return `${trailedText.substring(0, lastSpace)}...`;
-    // },
   },
 };
 </script>
