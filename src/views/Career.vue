@@ -19,8 +19,8 @@
             Mentoria é um processo de aceleração de carreira através de um acompanhamento
             feito por uma pessoa profissional mais experiente na área de atuação de interesse.
             <br><br>
-            Mentoria é um processo de aceleração de carreira através de um acompanhamento
-            feito por uma pessoa profissional mais experiente na área de atuação de interesse.
+            As mentorias serão realizadas em sessões individuais de 15 minutos que podem ser
+            acessadas e marcadas previamente através do calendly.
           </p>
         </div>
 

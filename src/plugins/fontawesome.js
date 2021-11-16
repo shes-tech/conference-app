@@ -18,6 +18,7 @@ import {
   faArrowLeft,
   faPlus,
   faCalendar,
+  faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -52,6 +53,7 @@ library.add(
   faDiscord,
   faPlus,
   faCalendar,
+  faExternalLinkAlt,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

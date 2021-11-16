@@ -6,9 +6,9 @@
         <div class="container">
           <b-button
             type="is-primary" icon-left="arrow-left" class="mb-5"
-            tag="router-link" to="/events#next-events"
+            tag="router-link" to="/career"
           >
-            Voltar para programação
+            Voltar para mentorias
           </b-button>
 
           <p
@@ -63,8 +63,12 @@
           <div v-if="!isLoading">
             <p class="title is-5 has-text-white">Quadro de Horários</p>
             <p v-if="mentoria.link" class="has-text-centered">
+              <vue-calendly :url="mentoria.link" :height="1000" class="calendar-iframe" />
               <a :href="mentoria.link" target="_blank" rel="noopener noreferrer">
                 Abrir Calendly em uma nova aba
+                <b-icon
+                  icon="external-link-alt" size="is-small" class="vertical-align ml-2"
+                />
               </a>
             </p>
           </div>
@@ -77,6 +81,8 @@
 </template>
 
 <script>
+import '@/plugins/calendly';
+
 import { mapGetters, mapActions } from 'vuex';
 
 import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
@@ -147,6 +153,10 @@ export default {
   padding: 0.3em 0.6em;
   border-radius: 8px;
 }
+
+.calendar-iframe {
+  background-color: rgba(255, 255, 255, 0.9);
+}
 </style>
 
 <style lang="scss">
@@ -159,5 +169,9 @@ export default {
       height: 200px;
     }
   }
+}
+
+iframe {
+  height: 100%;
 }
 </style>
