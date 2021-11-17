@@ -1,7 +1,7 @@
 <template>
   <section class="banner hero is-medium is-primary has-background is-transparent is-bold">
     <img
-      src="/universe.jpg"
+      src="@/assets/universe.png"
       class="hero-background is-transparent"
       alt="No plano de fundo, imagem mostrando o universo"
     />
@@ -26,22 +26,38 @@
         </p>
         <p class="subtitle is-5">
           Teremos muito conteúdo, mentorias, trocas e
-          interação no Canal do Discord e na Sala do Zoom.
+          interação no Chat do Discord e no Canal do Telegram.
         </p>
         <p class="subtitle is-4">
           Vamos Juntes!
         </p>
         <p class="is-5 pt-5 pb-1 mb-1">
           <b-button
-            type="is-secondary" size="is-medium" class="is-uppercase"
+            type="is-dark" size="is-medium" class="is-uppercase btn-discord mr-2"
             tag="a" href="https://discord.gg/gAss2vSTFM" target="_blank"
           >
             <b-icon icon="discord" pack="fab" class="vertical-align" />
-            <span class="ml-3">Chat Oficial</span>
+            <span class="ml-3">Chat do Discord</span>
+          </b-button>
+
+          <b-button
+            type="is-dark" size="is-medium" class="is-uppercase btn-telegram ml-2 mr-2"
+            tag="a" href="https://t.me/shestech" target="_blank"
+          >
+            <b-icon icon="telegram" pack="fab" class="vertical-align" />
+            <span class="ml-3">Canal do Telegram</span>
+          </b-button>
+
+          <b-button
+            type="is-dark" size="is-medium" class="is-uppercase btn-linkedin ml-2"
+            tag="a" href="https://br.linkedin.com/company/shestech" target="_blank"
+          >
+            <b-icon icon="linkedin-in" pack="fab" class="vertical-align" />
+            <span class="ml-3">LinkedIn</span>
           </b-button>
         </p>
         <p class="is-5 pt-4 pb-1 mb-1">
-          #ShesTechConference2020
+          #ShesTechConference2021
         </p>
       </div>
     </div>
@@ -84,5 +100,17 @@ export default {
   position: absolute;
   top: 20px;
   left: 20px;
+}
+
+.btn-linkedin {
+  background-color: #0077b5;
+}
+
+.btn-telegram {
+  background-color: #0088cc;
+}
+
+.btn-discord {
+  background-color: #7289da;
 }
 </style>

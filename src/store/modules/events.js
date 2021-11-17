@@ -170,7 +170,7 @@ const actions = {
     commit('CLEAR_SEARCH');
   },
   fetchSearchEvents: async ({ state, commit }, query) => {
-    if (state.nextEvents.length > 0) return;
+    if (state.searchEvents.length > 0) return;
     if (state.isEmpty.search) return;
 
     const events = {};

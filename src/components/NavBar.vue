@@ -25,8 +25,9 @@
       >Mentoria</b-navbar-item>
       <b-navbar-item
         tag="a"
+        target="_blank" rel="noopener noreferrer"
         href="https://forms.gle/VesWEZkgX57jVgKe8"
-      >Oportunidades</b-navbar-item>
+      >JOB.me</b-navbar-item>
       <b-navbar-item
         tag="a"
         href="https://shestech.org/quem-somos"

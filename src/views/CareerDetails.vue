@@ -1,7 +1,12 @@
 <template>
   <div>
     <!-- Banner -->
-    <section v-if="!isLoading" class="hero is-primary is-bold">
+    <section v-if="!isLoading" class="banner has-background is-transparent hero is-primary is-bold">
+      <img
+        src="@/assets/universe.png"
+        class="hero-background is-transparent"
+        alt="No plano de fundo, imagem mostrando o universo"
+      />
       <div class="hero-body">
         <div class="container">
           <b-button
@@ -38,7 +43,12 @@
     </section>
 
     <!-- Banner (Placeholder) -->
-    <section v-else class="hero is-primary is-bold">
+    <section v-else class="banner has-background is-transparent hero is-primary is-bold">
+      <img
+        src="@/assets/universe.png"
+        class="hero-background is-transparent"
+        alt="No plano de fundo, imagem mostrando o universo"
+      />
       <div class="hero-body">
         <div class="container">
           <placeholder-banner />
@@ -48,7 +58,7 @@
 
     <div class="container p-5">
       <div class="columns is-desktop">
-        <div class="column is-5-desktop">
+        <div class="column is-4-desktop">
           <placeholder-description v-if="isLoading" />
           <div v-else>
             <p class="title is-5 has-text-white">Sobre a Mentora</p>
@@ -59,7 +69,7 @@
           </div>
         </div>
 
-        <div class="column is-7-desktop mb-5">
+        <div class="column is-offset-1-desktop is-7-desktop mb-5">
           <div v-if="!isLoading">
             <p class="title is-5 has-text-white">Quadro de Horários</p>
             <p v-if="mentoria.link" class="has-text-centered">
@@ -156,6 +166,23 @@ export default {
 
 .calendar-iframe {
   background-color: rgba(255, 255, 255, 0.9);
+}
+
+.hero {
+  &.has-background {
+    position: relative;
+    overflow: hidden;
+  }
+  &-background {
+    position: absolute;
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+    &.is-transparent {
+      opacity: 0.9;
+    }
+  }
 }
 </style>
 

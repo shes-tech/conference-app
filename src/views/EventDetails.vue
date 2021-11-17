@@ -1,7 +1,12 @@
 <template>
   <div>
     <!-- Event Details Banner -->
-    <section v-if="!isLoading" class="hero is-primary is-bold">
+    <section v-if="!isLoading" class="banner has-background is-transparent hero is-primary is-bold">
+      <img
+        src="@/assets/universe.png"
+        class="hero-background is-transparent"
+        alt="No plano de fundo, imagem mostrando o universo"
+      />
       <div class="hero-body">
         <div class="container">
           <b-button
@@ -67,7 +72,12 @@
     </section>
 
     <!-- Event Details Banner (Placeholder) -->
-    <section v-else class="hero is-primary is-bold">
+    <section v-else class="banner has-background is-transparent hero is-primary is-bold">
+      <img
+        src="@/assets/universe.png"
+        class="hero-background is-transparent"
+        alt="No plano de fundo, imagem mostrando o universo"
+      />
       <div class="hero-body">
         <div class="container">
           <placeholder-banner />
@@ -265,6 +275,23 @@ export default {
   width: fit-content;
   padding: 0.3em 0.6em;
   border-radius: 8px;
+}
+
+.hero {
+  &.has-background {
+    position: relative;
+    overflow: hidden;
+  }
+  &-background {
+    position: absolute;
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+    &.is-transparent {
+      opacity: 0.9;
+    }
+  }
 }
 </style>
 

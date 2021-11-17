@@ -24,7 +24,7 @@
       <p class="preview-title title is-5 has-text-white has-text-weight-bold">
         {{ event.title }}
       </p>
-      <p v-if="event.description" class="description is-5 has-text-white">
+      <p class="description is-5 has-text-white">
         {{ event.description | trailText }}
       </p>
       <div class="speaker-section subtitle has-text-grey is-6 speakers-text">

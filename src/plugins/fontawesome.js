@@ -27,6 +27,7 @@ import {
   faFacebookF,
   faTwitter,
   faDiscord,
+  faTelegram,
 } from '@fortawesome/free-brands-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -54,6 +55,7 @@ library.add(
   faPlus,
   faCalendar,
   faExternalLinkAlt,
+  faTelegram,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
