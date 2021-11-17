@@ -192,7 +192,7 @@ export default {
 }
 
 .date-text {
-  color: #d28bb1;
+  color: #5e17eb;
 }
 
 .speakers-text {
