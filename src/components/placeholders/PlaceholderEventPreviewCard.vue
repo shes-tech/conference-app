@@ -16,6 +16,7 @@ export default {
 .placeholder-card {
   position: relative;
   height: 160px;
+  z-index: 1;
 }
 </style>
 

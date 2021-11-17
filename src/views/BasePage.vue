@@ -3,6 +3,8 @@
     <nav-bar />
     <router-view/>
     <custom-footer />
+
+    <modal-lead />
   </div>
 </template>
 
@@ -11,12 +13,14 @@ import { mapActions } from 'vuex';
 
 import NavBar from '../components/NavBar.vue';
 import Footer from '../components/Footer.vue';
+import ModalLead from '../components/ModalLead.vue';
 
 export default {
   name: 'BasePage',
   components: {
     'nav-bar': NavBar,
     'custom-footer': Footer,
+    'modal-lead': ModalLead,
   },
   methods: {
     ...mapActions({

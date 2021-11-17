@@ -38,6 +38,16 @@ export default new Router({
       ],
     },
     {
+      path: '/declaracao-de-privacidade',
+      name: 'declaracao-de-privacidade',
+      component: () => import(/* webpackChunkName: "privacy" */ './views/privacy/DeclaracaoDePrivacidade.vue'),
+    },
+    {
+      path: '/termos-de-uso',
+      name: 'termos-de-uso',
+      component: () => import(/* webpackChunkName: "privacy" */ './views/privacy/TermosDeUso.vue'),
+    },
+    {
       path: '*',
       redirect: 'events',
     },
