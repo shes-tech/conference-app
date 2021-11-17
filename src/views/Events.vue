@@ -30,8 +30,12 @@ import NextEvents from './NextEvents.vue';
 import SearchEvents from './SearchEvents.vue';
 import EventsByDay from './EventsByDay.vue';
 
+import titleMixin from '@/mixins/titleMixin';
+
 export default {
   name: 'Events',
+  title: 'Programação',
+  mixins: [titleMixin],
   components: {
     'main-banner': MainBanner,
     'filter-bar': FilterBar,

@@ -100,8 +100,12 @@ import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
 import PlaceholderEventDescription from '../components/placeholders/PlaceholderEventDescription.vue';
 import PlaceholderEventBanner from '../components/placeholders/PlaceholderEventBanner.vue';
 
+import titleMixin from '@/mixins/titleMixin';
+
 export default {
   name: 'CareerDetails',
+  title: 'Mentoria',
+  mixins: [titleMixin],
   components: {
     'speaker-preview-card': SpeakerPreviewCard,
     'placeholder-description': PlaceholderEventDescription,
@@ -119,7 +123,9 @@ export default {
       const mentoriaId = this.$route.params.id;
       this.mentoriaId = mentoriaId;
       await this.fetchMentoriaById(mentoriaId);
+
       this.logAnalytics();
+      this.updateTitle(`${this.mentoria.mentora.name}: ${this.mentoria.title} | Mentoria`);
     },
     checkLoading() {
       if (this.mentoria.title) this.isLoading = false;

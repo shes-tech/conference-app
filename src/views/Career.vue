@@ -36,8 +36,12 @@
 import CareerBanner from '../components/CareerBanner.vue';
 import NextMentorias from './NextMentorias.vue';
 
+import titleMixin from '@/mixins/titleMixin';
+
 export default {
   name: 'Career',
+  title: 'Mentoria',
+  mixins: [titleMixin],
   components: {
     'career-banner': CareerBanner,
     'next-mentorias': NextMentorias,

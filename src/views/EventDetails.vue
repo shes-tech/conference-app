@@ -133,8 +133,12 @@ import SpeakerPreviewCard from '../components/SpeakerPreviewCard.vue';
 import PlaceholderEventDescription from '../components/placeholders/PlaceholderEventDescription.vue';
 import PlaceholderEventBanner from '../components/placeholders/PlaceholderEventBanner.vue';
 
+import titleMixin from '@/mixins/titleMixin';
+
 export default {
   name: 'NextEvents',
+  title: 'Programação',
+  mixins: [titleMixin],
   components: {
     'speaker-preview-card': SpeakerPreviewCard,
     'placeholder-description': PlaceholderEventDescription,
@@ -152,7 +156,9 @@ export default {
     async fetchAll() {
       const eventId = this.$route.params.id;
       await this.fetchEventById(eventId);
+
       this.logAnalytics();
+      this.updateTitle(`${this.event.title}`);
     },
     checkLoading() {
       if (this.event.title) this.isLoading = false;
