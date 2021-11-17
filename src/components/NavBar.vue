@@ -20,8 +20,8 @@
       >Programação</b-navbar-item>
       <b-navbar-item
         tag="router-link"
-        to="/career"
-        :active="$route.path === '/career'"
+        to="/mentoria"
+        :active="$route.path === '/mentoria'"
       >Mentoria</b-navbar-item>
       <b-navbar-item
         tag="a"

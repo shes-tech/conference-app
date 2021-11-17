@@ -35,6 +35,16 @@ export default new Router({
           name: 'career-details',
           component: () => import(/* webpackChunkName: "career-detail" */ './views/CareerDetails.vue'),
         },
+        {
+          path: 'mentoria',
+          name: 'mentoria',
+          component: () => import(/* webpackChunkName: "career" */ './views/Career.vue'),
+        },
+        {
+          path: 'mentoria/:id',
+          name: 'mentoria-details',
+          component: () => import(/* webpackChunkName: "career-detail" */ './views/CareerDetails.vue'),
+        },
       ],
     },
     {

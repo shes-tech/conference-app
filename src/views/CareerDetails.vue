@@ -11,7 +11,7 @@
         <div class="container">
           <b-button
             type="is-primary" icon-left="arrow-left" class="mb-5"
-            tag="router-link" to="/career"
+            tag="router-link" to="/mentoria"
           >
             Voltar para mentorias
           </b-button>

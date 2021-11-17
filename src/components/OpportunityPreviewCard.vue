@@ -5,7 +5,7 @@
       'card-preview tile is-child box p-4 is-unselectable is-primary',
       { 'fade-card': !mentoria.isAvailable },
     ]"
-    :to="`/career/${mentoria.id}`"
+    :to="`/mentoria/${mentoria.id}`"
   >
     <div>
       <p
