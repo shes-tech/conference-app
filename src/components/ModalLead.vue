@@ -105,7 +105,6 @@ export default {
 
     getFromLocalStorage() {
       const status = JSON.parse(localStorage.getItem('lead'));
-      console.log('getFromLocalStorage', status);
       if (status) this.isModalActive = false;
     },
     saveToLocalStorage() {
