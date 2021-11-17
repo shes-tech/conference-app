@@ -58,7 +58,7 @@
 
     <div class="container p-5">
       <div class="columns is-desktop">
-        <div class="column is-4-desktop">
+        <div class="column is-5-desktop">
           <placeholder-description v-if="isLoading" />
           <div v-else>
             <p class="title is-5 has-text-white">Sobre a Mentora</p>
@@ -69,7 +69,7 @@
           </div>
         </div>
 
-        <div class="column is-offset-1-desktop is-7-desktop mb-5">
+        <div class="column is-7-desktop mb-5">
           <div v-if="!isLoading">
             <p class="title is-5 has-text-white">Quadro de Horários</p>
             <p v-if="mentoria.link" class="has-text-centered">
