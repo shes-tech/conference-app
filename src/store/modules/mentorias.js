@@ -29,6 +29,7 @@ const actions = {
     const mentorias = {};
 
     const snapshot = await db.collection(COLLECTION_NAME)
+      .orderBy('mentora.name')
       .limit(INITIAL_FETCH_LIMIT)
       .get();
 
@@ -49,6 +50,7 @@ const actions = {
 
     const mentorias = {};
     const snapshot = await db.collection(COLLECTION_NAME)
+      .orderBy('mentora.name')
       .startAfter(lastElement)
       .limit(UPDATE_FETCH_LIMIT)
       .get();

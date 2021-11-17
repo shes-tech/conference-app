@@ -1,7 +1,10 @@
 <template>
   <router-link
     tag="a"
-    class="card-preview tile is-child box p-4 is-unselectable is-primary"
+    :class="[
+      'card-preview tile is-child box p-4 is-unselectable is-primary',
+      { 'fade-card': !mentoria.isAvailable },
+    ]"
     :to="`/career/${mentoria.id}`"
   >
     <div>
@@ -86,19 +89,19 @@ export default {
 .speaker-section {
   display: flex;
   flex-direction: row;
-  height: 40px;
-  margin-bottom: 0;
+  height: 60px;
+  margin-bottom: 0.5em;
 
   .container-img {
     height: fit-content;
-    width: 40px;
+    width: 60px;
     margin-right: 0.8em;
   }
 
   img {
     object-fit: cover;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
 
     border-radius: 100px;
     margin-left: 0.4em;
@@ -114,7 +117,8 @@ export default {
   }
 
   .name {
-    margin-top: 0.4em;
+    margin-top: 0.8em;
+    margin-bottom: 1em;
   }
 }
 
@@ -144,7 +148,12 @@ export default {
   margin-top: 0.8em;
   margin-bottom: 0.2em;
 }
+
 .buttons {
   margin-left: 5vw;
+}
+
+.fade-card {
+  opacity: 0.5;
 }
 </style>
