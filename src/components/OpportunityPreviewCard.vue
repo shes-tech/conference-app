@@ -33,9 +33,9 @@
       </p>
 
       <p class="speaker-section subtitle is-5 has-text-white mt-5">
-        <span class="container-img">
+        <span v-if="mentoria.mentora.picture" class="container-img">
           <img
-            v-if="mentoria.mentora.picture" :src="mentoria.mentora.picture"
+            :src="mentoria.mentora.picture"
             class="speaker-img"
           />
         </span>
@@ -91,6 +91,8 @@ export default {
 
   .container-img {
     height: fit-content;
+    width: 40px;
+    margin-right: 0.8em;
   }
 
   img {
