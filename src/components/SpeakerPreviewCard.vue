@@ -15,6 +15,11 @@
         <div>
           <p v-if="speaker.picture" class="title is-4 mt-5 has-text-white">{{ speaker.name }}</p>
           <p v-else class="title is-4 mt-3 has-text-white">{{ speaker.name }}</p>
+
+          <p class="has-text-white is-6 subtitle mt-0">
+            {{ speaker.cargo }}
+            <span v-if="speaker.empresa"> @ {{ speaker.empresa }}</span>
+          </p>
         </div>
       </div>
 

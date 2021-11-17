@@ -116,7 +116,11 @@ export default {
     },
 
     async saveLead() {
-      await db.collection(COLLECTION_NAME).add(this.form);
+      const form = {
+        ...this.form,
+        time: new Date(),
+      };
+      await db.collection(COLLECTION_NAME).add(form);
     },
   },
   computed: {
