@@ -14,7 +14,7 @@
         ]"
       >
         <b-icon
-          icon="genderless"
+          icon="circle"
           size="is-small"
           class="vertical-align mr-3"
         />
@@ -32,8 +32,14 @@
         <span v-if="mentoria.mentora.cargo">@ {{ mentoria.mentora.empresa }}</span>
       </p>
 
-      <p class="description subtitle is-5 has-text-white mt-5">
-        {{ mentoria.mentora.name }}
+      <p class="speaker-section subtitle is-5 has-text-white mt-5">
+        <span class="container-img">
+          <img
+            v-if="mentoria.mentora.picture" :src="mentoria.mentora.picture"
+            class="speaker-img"
+          />
+        </span>
+        <span class="name">{{ mentoria.mentora.name }}</span>
       </p>
     </div>
   </router-link>
@@ -103,6 +109,10 @@ export default {
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 0.4em;
+  }
+
+  .name {
+    margin-top: 0.4em;
   }
 }
 

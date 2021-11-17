@@ -19,6 +19,7 @@ import {
   faPlus,
   faCalendar,
   faExternalLinkAlt,
+  faCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -56,6 +57,7 @@ library.add(
   faCalendar,
   faExternalLinkAlt,
   faTelegram,
+  faCircle,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

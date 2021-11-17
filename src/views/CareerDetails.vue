@@ -25,7 +25,7 @@
             ]"
           >
             <b-icon
-              icon="genderless"
+              icon="circle"
               size="is-small"
               class="vertical-align mr-3"
             />
