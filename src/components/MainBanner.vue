@@ -17,11 +17,11 @@
           Programação
         </p>
         <p class="subtitle is-5">
-          Junte-se a nós nesses 5 dias de workshops,
+          Junte-se a nós nesses 4 dias de workshops,
           palestras e painéis de especialistas no maior
           evento de mulheres na tecnologia do Brasil!
         </p>
-        <p class="subtitle is-4">
+        <p class="subtitle is-4 has-text-weight-bold">
           INSPIRAR > ENGAJAR > CAPACITAR
         </p>
         <p class="subtitle is-5">
