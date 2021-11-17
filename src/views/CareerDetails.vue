@@ -92,6 +92,7 @@
 
 <script>
 import '@/plugins/calendly';
+import firebase from 'firebase/app';
 
 import { mapGetters, mapActions } from 'vuex';
 
@@ -118,10 +119,20 @@ export default {
       const mentoriaId = this.$route.params.id;
       this.mentoriaId = mentoriaId;
       await this.fetchMentoriaById(mentoriaId);
+      this.logAnalytics();
     },
     checkLoading() {
       if (this.mentoria.title) this.isLoading = false;
       else this.isLoading = true;
+    },
+
+    logAnalytics() {
+      firebase.analytics().logEvent('view_mentoria', {
+        mentoria_id: this.mentoriaId,
+        mentoria_name: this.mentoria.title,
+        mentoria_speaker: this.mentoria.mentora.name,
+        mentoria_category: 'mentoria',
+      });
     },
   },
   computed: {

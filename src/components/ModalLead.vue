@@ -101,6 +101,8 @@ export default {
 
       this.isLoading = false;
       this.closeModal();
+
+      this.logAnalytics();
     },
 
     getFromLocalStorage() {
@@ -121,6 +123,10 @@ export default {
         time: new Date(),
       };
       await db.collection(COLLECTION_NAME).add(form);
+    },
+
+    logAnalytics() {
+      firebase.analytics().logEvent('generate_lead');
     },
   },
   computed: {

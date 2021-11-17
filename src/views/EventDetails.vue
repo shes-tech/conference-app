@@ -119,6 +119,8 @@
 </template>
 
 <script>
+import firebase from 'firebase/app';
+
 import { mapGetters, mapActions } from 'vuex';
 
 import { format, isBefore, isAfter } from 'date-fns';
@@ -150,7 +152,7 @@ export default {
     async fetchAll() {
       const eventId = this.$route.params.id;
       await this.fetchEventById(eventId);
-      // await this.fetchSpeakerByEventId(eventId);
+      this.logAnalytics();
     },
     checkLoading() {
       if (this.event.title) this.isLoading = false;
@@ -165,6 +167,16 @@ export default {
         endTime: this.event.endTime.toDate(),
       };
       createCalendar(event);
+    },
+
+    logAnalytics() {
+      firebase.analytics().logEvent('view_event', {
+        event_id: this.eventId,
+        event_name: this.event.title,
+        event_speakers: this.speakersNames,
+        event_tag: this.tag && this.tag.name,
+        event_category: 'event',
+      });
     },
   },
   computed: {
