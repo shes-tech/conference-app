@@ -78,6 +78,7 @@ const actions = {
 
     const events = {};
     const snapshot = await db.collection(COLLECTION_NAME)
+      .orderBy('endTime')
       .orderBy('startTime')
       .startAfter(lastElement)
       .limit(UPDATE_FETCH_LIMIT)
