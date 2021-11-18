@@ -25,9 +25,15 @@
 
       <div v-if="speaker.minibio" class="content has-text-white" v-html="bio"></div>
 
-      <div v-if="hasSocial" class="card-footer pt-4">
+      <div v-if="hasSocial" class="card-footer card-social pt-4">
         <p class="mr-4 has-text-white">Siga:</p>
-        <a v-if="speaker.social.site" :href="speaker.social.site" target="_blank" rel="”noopener”">
+        <a
+          v-if="speaker.social.site"
+          :href="speaker.social.site"
+          target="_blank"
+          rel="”noopener”"
+          title="Link para o site da palestrante"
+        >
           <b-icon icon="globe-americas" pack="fab" class="vertical-align mr-4" />
         </a>
         <a
@@ -35,6 +41,7 @@
           :href="speaker.social.linkedin"
           target="_blank"
           rel="”noopener”"
+          title="Linkedin"
         >
           <b-icon icon="linkedin-in" pack="fab" class="vertical-align mr-4" />
         </a>
@@ -43,6 +50,7 @@
           :href="speaker.social.instagram"
           target="_blank"
           rel="”noopener”"
+          title="Instagram"
         >
           <b-icon icon="instagram" pack="fab" class="vertical-align mr-4" />
         </a>
@@ -51,6 +59,7 @@
           :href="speaker.social.twitter"
           target="_blank"
           rel="”noopener”"
+          title="Twitter"
         >
           <b-icon icon="twitter" pack="fab" class="vertical-align mr-4" />
         </a>
@@ -59,6 +68,7 @@
           :href="speaker.social.facebook"
           target="_blank"
           rel="”noopener”"
+          title="Facebook"
         >
           <b-icon icon="facebook-f" pack="fab" class="vertical-align mr-4" />
         </a>
@@ -129,5 +139,12 @@ export default {
 
 .speaker-card {
   background-color: #343535;
+}
+
+.card-social {
+  a:hover {
+    color: #8a8a8a;
+    opacity: 0.8;
+  }
 }
 </style>
