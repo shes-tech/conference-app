@@ -16,7 +16,10 @@
         Obrigada por participar da
       </p>
       <p>
-        She'sTech Conference 2020!
+        She'sTech Conference 2021.
+      </p>
+      <p>
+        Nos vemos em 2022!
       </p>
     </div>
   </transition>
